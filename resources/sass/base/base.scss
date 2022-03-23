@@ -1,0 +1,19 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: black !important;
+    text-decoration: none !important;
+
+    &:hover {
+        color: black !important;
+        text-decoration: none !important;
+    }
+}
+
+
+.btn-success {
+    background-color: $color-primary !important;
+    border: $color-primary !important;
+}

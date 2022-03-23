@@ -1,0 +1,80 @@
+.client-list-row {
+    margin-top: 25px !important;
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin-bottom: 50px;
+
+        .btn {
+            min-width: 85px;
+            height: 38px;
+        }
+    }
+}
+
+
+.client-add-alert {
+    position: absolute !important;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20vw;
+}
+
+.clients-table tbody tr {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.dataTables_length {
+    select {
+        min-width: 60px;
+    }
+}
+
+.paginate_button.page-item.active:hover {
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.client-detail-container {
+
+    .client-detail-back {
+        margin: 50px;
+    }
+
+    .client-detail-row {
+        margin: 15px 15px;
+        padding: 50px 25px;
+        background-color: white;
+        height: 100%;
+
+        .client-detail-col {
+            padding: 0px 50px;
+
+            @media(max-width:991px) {
+                padding: 0;
+            }
+
+            table {
+                td {
+                    min-width: 150px;
+                }
+            }
+        }
+    }
+}
+
