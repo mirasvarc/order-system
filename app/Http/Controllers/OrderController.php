@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Client;
+use App\Models\Product;
 use DataTables;
 
 
@@ -45,7 +46,8 @@ class OrderController extends Controller
     public function create()
     {
         $clients = Client::All();
-        return view('orders.create')->with(['clients' => $clients]);
+        $products = Product::All();
+        return view('orders.create')->with(['clients' => $clients, 'products' => $products]);
     }
 
     /**
