@@ -51,7 +51,55 @@
 
         </div>
     </div>
+    <div class="row client-detail-row">
+        <div class="col-12 client-detail-col">
+            <h2>Objednávky klienta</h2>
+            <br>
+            <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Klient</th>
+                    <th scope="col">Datum vytvoření</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+
+<script type="text/javascript">
+    $(function () {
+
+      var table = $('.yajra-datatable').DataTable({
+          processing: true,
+          serverSide: true,
+          responsive: true,
+          ajax: "{{ route('client_orders.list') }}",
+          columns: [
+              {data: 'id', name: 'id'},
+              {data: 'client_id', name: 'client_id'},
+              {data: 'created_at', name: 'created_at'},
+              {
+                  data: 'action',
+                  name: 'action',
+                  orderable: true,
+                  searchable: true
+              },
+          ],
+          language: {
+              url: 'https://cdn.datatables.net/plug-ins/1.11.4/i18n/cs.json',
+          }
+      });
+
+    });
+
+</script>
 
 
 @endsection

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Order;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
 
 class ClientController extends Controller
@@ -77,8 +79,9 @@ class ClientController extends Controller
     public function show($id)
     {
         $client = Client::find($id);
+        $orders = Order::where('client_id', $client->id)->get();
 
-        return view('clients.detail')->with(['client' => $client]);
+        return view('clients.detail')->with(['client' => $client, 'client_orders' => $orders]);
     }
 
     /**

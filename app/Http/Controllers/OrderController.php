@@ -7,7 +7,7 @@ use App\Models\Order;
 use App\Models\Client;
 use App\Models\Product;
 use DataTables;
-
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -27,6 +27,27 @@ class OrderController extends Controller
     {
         if ($request->ajax()) {
             $data = Order::latest()->get();
+            $data = Order::addSelect(['name' => Client::select('name')
+                        ->whereColumn('id', 'orders.client_id')
+                        ])->get();
+
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($order){
+                    $actionBtn = '<a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm">Otevřít</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
+
+    public function getClientOrders(Request $request)
+    {
+        if ($request->ajax()) {
+            $client = Auth::user();
+            $data = Order::where('client_id', $client->id)->get();
+
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($order){

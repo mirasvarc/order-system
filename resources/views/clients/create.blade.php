@@ -6,8 +6,7 @@
         <div class="row client-list-row">
             <div class="col-12">
                 <div class="title">
-                    <h1>Přidání nového klienta</h1>
-                    <a href="/clients" class="btn btn-primary">Zpět</a>
+                    <h1><a href="/clients"><i class="fa fa-arrow-left"></a></i>&nbsp;Přidání nového klienta</h1>
                 </div>
             </div>
         </div>

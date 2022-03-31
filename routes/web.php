@@ -42,6 +42,7 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/add', [OrderController::class, 'create']);
     Route::post('/add', [OrderController::class, 'store']);
     Route::get('/list', [OrderController::class, 'getOrders'])->name('orders.list');
+    Route::get('/client-orders-list', [OrderController::class, 'getClientOrders'])->name('client_orders.list');
     Route::get('/{id}', [OrderController::class, 'show']);
 });
 

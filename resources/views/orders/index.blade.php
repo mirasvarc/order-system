@@ -6,7 +6,7 @@
         <div class="row client-list-row">
             <div class="col-12">
                 <div class="title">
-                    <h1>Seznam objednávek</h1>
+                    <h1><a href="/"><i class="fa fa-arrow-left"></a></i>&nbsp;Seznam objednávek</h1>
                     <a href="/orders/add" class="btn btn-success">Vytvořit objednávku</a>
                 </div>
             </div>
@@ -20,6 +20,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Klient</th>
                         <th scope="col">Datum vytvoření</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -50,7 +51,7 @@
 
     <script type="text/javascript">
         $(function () {
-
+            console.log("test")
           var table = $('.yajra-datatable').DataTable({
               processing: true,
               serverSide: true,
@@ -58,7 +59,7 @@
               ajax: "{{ route('orders.list') }}",
               columns: [
                   {data: 'id', name: 'id'},
-                  {data: 'client_id', name: 'client_id'},
+                  {data: 'name', name: 'name'},
                   {data: 'created_at', name: 'created_at'},
                   {
                       data: 'action',
