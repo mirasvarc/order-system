@@ -1,3 +1,10 @@
+.container {
+    @media(max-width:991px) {
+        margin: 20%;
+    }
+}
+
+
 .main-btn {
     background-color: white;
     padding: 150px 0;
@@ -10,6 +17,12 @@
         -webkit-box-shadow: 10px 10px 31px -5px rgba(0,0,0,0.21);
         -moz-box-shadow: 10px 10px 31px -5px rgba(0,0,0,0.21);
         box-shadow: 10px 10px 31px -5px rgba(0,0,0,0.21);
+    }
+
+    @media(max-width:991px) {
+        background-color: white;
+        padding: 75px 0;
+        margin: 10% 45px 0;
     }
 }
 
