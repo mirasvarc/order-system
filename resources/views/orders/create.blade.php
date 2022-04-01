@@ -16,7 +16,7 @@
                 <form method="POST" action="/orders/add" class="form-control">
                     @csrf
                     <div class="row">
-                        <div class="col-6 offset-3">
+                        <div class="col-md-6 col-xs-12 offset-md-3">
 
                             <div class="form-group mb-2 mt-3 ml-5 mr-5">
                                 <h3>Klient</h3>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6 offset-3">
+                        <div class="col-md-6 col-xs-12 offset-md-3">
                             <div class="product-container">
                                 <div class="form-group mb-2 mt-3 ml-5 mr-5">
                                     <h3>Produkty</h3>
