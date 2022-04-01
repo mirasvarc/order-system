@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Client;
 use App\Models\Product;
+use App\Models\OrderItem;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,8 +80,29 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request);
         $order = new Order();
-        // TODO:
+        $order->client_id = $request->clients;
+        $order->full_price = null;
+        $order->save();
+
+        $price = 0;
+
+        foreach($request->product as $key => $product) {
+            $order_item = new OrderItem();
+            $order_item->order_id = $order->id;
+            $order_item->client_id = $request->clients;
+            $order_item->item_id = $key;
+            $order_item->quantity = $product;
+            $order_item->unit = "kg";
+            $order_item->save();
+
+            $product_item = Product::where('id', $key)->first();
+            $price += $product * $product_item->price;
+        }
+
+        $order = Order::where('id', $order->id)->first();
+        $order->full_price = $price;
         $order->save();
 
         return redirect('/orders?add_success');
@@ -94,9 +116,17 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::find($id);
+        $order = Order::addSelect(['client' => Client::select('name')
+                        ->whereColumn('id', 'orders.client_id')
+                        ])->find($id);
 
-        return view('orders.detail')->with(['order' => $order]);
+        $order_items = OrderItem::addSelect(['product' => Product::select('name')
+                                  ->whereColumn('id', 'order_items.item_id')
+                                ])->addSelect(['price' => Product::select('price')
+                                  ->whereColumn('id', 'order_items.item_id')
+                                ])->where('order_id', $order->id)->get();
+
+        return view('orders.detail')->with(['order' => $order, 'order_items' => $order_items]);
     }
 
     /**

@@ -19,6 +19,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Klient</th>
+                        <th scope="col">Cena (Kč)</th>
                         <th scope="col">Datum vytvoření</th>
                         <th scope="col"></th>
                       </tr>
@@ -60,6 +61,7 @@
               columns: [
                   {data: 'id', name: 'id'},
                   {data: 'name', name: 'name'},
+                  {data: 'full_price', name: 'full_price'},
                   {data: 'created_at', name: 'created_at'},
                   {
                       data: 'action',
