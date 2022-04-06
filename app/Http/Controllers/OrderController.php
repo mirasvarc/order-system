@@ -45,9 +45,10 @@ class OrderController extends Controller
 
     public function getClientOrders(Request $request)
     {
+
         if ($request->ajax()) {
             $client = Auth::user();
-            $data = Order::where('client_id', $client->id)->get();
+            $data = Order::where('client_id', $request->client)->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/list', [OrderController::class, 'getOrders'])->name('orders.list');
     Route::get('/client-orders-list', [OrderController::class, 'getClientOrders'])->name('client_orders.list');
     Route::get('/{id}', [OrderController::class, 'show']);
+});
+
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';

@@ -59,7 +59,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Klient</th>
+                    <th scope="col">Cena (Kč)</th>
                     <th scope="col">Datum vytvoření</th>
                     <th scope="col"></th>
                   </tr>
@@ -80,10 +80,15 @@
           processing: true,
           serverSide: true,
           responsive: true,
-          ajax: "{{ route('client_orders.list') }}",
+          ajax: {
+              url: "{{ route('client_orders.list') }}",
+              data: {
+                client: "{{$client->id}}"
+              },
+            },
           columns: [
               {data: 'id', name: 'id'},
-              {data: 'client_id', name: 'client_id'},
+              {data: 'full_price', name: 'full_price'},
               {data: 'created_at', name: 'created_at'},
               {
                   data: 'action',
