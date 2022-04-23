@@ -31,8 +31,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Klient</th>
                         <th scope="col">Cena (Kč)</th>
-                        <th scope="col">Datum vytvoření</th>
                         <th scope="col">Den závozu</th>
+                        <th scope="col">Datum vytvoření</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
