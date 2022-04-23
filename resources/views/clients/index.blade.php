@@ -18,7 +18,7 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Jméno a Příjmení</th>
+                        <th scope="col">Jméno a Příjmení / Společnost</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefon</th>
                         <th scope="col"></th>

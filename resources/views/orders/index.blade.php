@@ -14,6 +14,17 @@
 
         <div class="row">
             <div class="col-12">
+                <br>
+                <p>
+                    Export:
+                    <a href="/orders/export/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí</a>
+                    <a href="/orders/export/{{$day = 'Úterý'}}" class="btn btn-export">Úterý</a>
+                    <a href="/orders/export/{{$day = 'Středa'}}" class="btn btn-export">Středa</a>
+                    <a href="/orders/export/{{$day = 'Čtvrtek'}}" class="btn btn-export">Čtvrtek</a>
+                    <a href="/orders/export/{{$day = 'Pátek'}}" class="btn btn-export">Pátek</a>
+                    <a href="/orders/export/{{$day = 'Vše'}}" class="btn btn-export">Vše</a>
+                </p>
+                <br>
                 <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
                     <thead>
                       <tr>
@@ -21,6 +32,7 @@
                         <th scope="col">Klient</th>
                         <th scope="col">Cena (Kč)</th>
                         <th scope="col">Datum vytvoření</th>
+                        <th scope="col">Den závozu</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -62,6 +74,7 @@
                   {data: 'id', name: 'id'},
                   {data: 'name', name: 'name'},
                   {data: 'full_price', name: 'full_price'},
+                  {data: 'day', name: 'day'},
                   {data: 'created_at', name: 'created_at'},
                   {
                       data: 'action',
