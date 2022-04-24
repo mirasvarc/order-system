@@ -56,12 +56,10 @@
                                         {{$product->name}}
                                     </div>
                                     <div class="product-price">
-                                        {{$product->price}} Kč
+                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" value="{{$product->price}}">&nbsp; Kč
                                     </div>
                                     <div class="product-count">
-                                        <div class="count-minus">-</div>
-                                        <input type="number" name="product[{{$product->id}}]" id="product-count-input" value="0" min="0">
-                                        <div class="count-plus">+</div>
+                                        <input type="number" name="product[{{$product->id}}]" id="product-count-input" value="0" min="0">&nbsp; Kg
                                     </div>
                                 </div>
                             @endforeach

@@ -95,16 +95,17 @@ class OrderController extends Controller
         $price = 0;
 
         foreach($request->product as $key => $product) {
+            //dd(intval($request->product_price[$key]));
             $order_item = new OrderItem();
             $order_item->order_id = $order->id;
             $order_item->client_id = $request->clients;
             $order_item->item_id = $key;
             $order_item->quantity = $product;
+            $order_item->price = intval($request->product_price[$key]);
             $order_item->unit = "kg";
             $order_item->save();
 
-            $product_item = Product::where('id', $key)->first();
-            $price += $product * $product_item->price;
+            $price += $product * intval($request->product_price[$key]);
         }
 
         $order = Order::where('id', $order->id)->first();
@@ -127,8 +128,6 @@ class OrderController extends Controller
                         ])->find($id);
 
         $order_items = OrderItem::addSelect(['product' => Product::select('name')
-                                  ->whereColumn('id', 'order_items.item_id')
-                                ])->addSelect(['price' => Product::select('price')
                                   ->whereColumn('id', 'order_items.item_id')
                                 ])->where('order_id', $order->id)->get();
 
