@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\OrderItem;
 use DataTables;
 use PDF;
+use DOMDocument;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
