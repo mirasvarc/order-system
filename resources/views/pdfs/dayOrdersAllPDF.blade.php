@@ -48,41 +48,47 @@
 
     <h1>Objednávky - {{$day}}</h1>
 
-    @foreach ($orders as $client)
-        <p style="font-size:18px;font-weight:bold;margin-bottom:0px !important;">{{$client['client']}}</p>
-        <p>{{$client['address']}}, email: {{$client['email']}}, telefon: {{$client['phone']}}</p>
-        <p>Poznámka: {{$client['note']}}</p>
+    @if(isset($orders))
+        @foreach ($orders as $client)
+            @if(isset($client['orders']))
+                <p style="font-size:18px;font-weight:bold;margin-bottom:0px !important;">{{$client['client']}}</p>
+                <p>{{$client['address']}}, email: {{$client['email']}}, telefon: {{$client['phone']}}</p>
+                <p>Poznámka: {{$client['note']}}</p>
 
-        @foreach ($client['orders'] as $order)
-            <table>
-                <tr>
-                    <td>Celková cena objednávky:</td>
-                    <td>{{$order['price']}} Kč</td>
-                </tr>
-                <tr>
-                    <td>Poznámka k objednávce:</td>
-                    <td>{{$order['note']}}</td>
-                </tr>
-            </table>
-            <table id="items">
-                <tr>
-                    <td style="font-weight:bold;">Zboží</td>
-                    <td style="font-weight:bold;">Cena za kg</td>
-                    <td style="font-weight:bold;">Množství</td>
-                    <td style="font-weight:bold;">Celková cena</td>
-                </tr>
-                @foreach ($order['items'] as $item)
-                    <tr>
-                        <td>{{$item['product']}}</td>
-                        <td>{{$item['price_per_kg']}} Kč</td>
-                        <td>{{$item['quantity']}} Kg</td>
-                        <td>{{$item['full_price']}} Kč</td>
-                    </tr>
+                @foreach ($client['orders'] as $order)
+                    <table>
+                        <tr>
+                            <td>Celková cena objednávky:</td>
+                            <td>{{$order['price']}} Kč</td>
+                        </tr>
+                        <tr>
+                            <td>Poznámka k objednávce:</td>
+                            <td>{{$order['note']}}</td>
+                        </tr>
+                    </table>
+                    <table id="items">
+                        <tr>
+                            <td style="font-weight:bold;">Zboží</td>
+                            <td style="font-weight:bold;">Cena za kg</td>
+                            <td style="font-weight:bold;">Množství</td>
+                            <td style="font-weight:bold;">Celková cena</td>
+                        </tr>
+                        @foreach ($order['items'] as $item)
+                            @if($item['quantity'] > 0)
+                            <tr>
+                                <td>{{$item['product']}}</td>
+                                <td>{{$item['price_per_kg']}} Kč</td>
+                                <td>{{$item['quantity']}} Kg</td>
+                                <td>{{$item['full_price']}} Kč</td>
+                            </tr>
+                            @endif
+                        @endforeach
+                    </table>
                 @endforeach
-            </table>
-        @endforeach
+            @endif
 
-    @endforeach
+        @endforeach
+    @endif
 
 
 

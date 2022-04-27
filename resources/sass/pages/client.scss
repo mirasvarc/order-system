@@ -4,8 +4,8 @@
     .title {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-
+        justify-content: flex-start;
+        align-items: center;
         margin-bottom: 50px;
 
         @media(max-width:991px) {
@@ -15,6 +15,10 @@
         .btn {
             min-width: 85px;
             height: 38px;
+            margin-left: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             @media(max-width:991px) {
                 max-width: 50%;

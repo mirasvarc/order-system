@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\User;
 use App\Models\Order;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -23,5 +24,13 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
+
+    public function showUsersList() {
+        $users = User::get();
+       
+        return view('admin.users')->with([
+            'users' => $users
+        ]);
+    }
 
 }

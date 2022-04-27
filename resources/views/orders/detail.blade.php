@@ -5,7 +5,7 @@
 
 <div class="container client-detail-container">
     <br>
-    <a href="/clients" class="client-detail-back">Zpět</a>
+    <a href="javascript:history.back()" class="client-detail-back">Zpět</a>
     <br>
     <div class="row client-detail-row">
         <div class="col-12 client-detail-col">

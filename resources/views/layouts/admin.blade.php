@@ -35,17 +35,20 @@
 
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 flex">
             @include('layouts.navigation')
 
             <div class="admin-nav">
                 <div class="admin-menu-items">
-                    <div class="admin-menu-item">Uživatelé</div>
+                    <a href="/"><i class="fa-solid fa-arrow-left"></i>&nbsp;Zpět</a>
+                    <div class="admin-menu-item">
+                        <a href="/admin/users">Uživatelé</a>
+                    </div>
                     <div class="admin-menu-item">Nastavení</div>
                 </div>
             </div>
 
-            <main>
+            <main id="admin">
                 @yield('main')
             </main>
         </div>

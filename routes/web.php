@@ -56,6 +56,7 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
+    Route::get('/users', [AdminController::class, 'showUsersList']);
 });
 
 

@@ -7,7 +7,11 @@
             <div class="col-12">
                 <div class="title">
                     <h1><a href="/"><i class="fa fa-arrow-left"></a></i>&nbsp;Seznam objednávek</h1>
-                    <a href="/orders/add" class="btn btn-success">Vytvořit objednávku</a>
+                    <a href="/orders/add" class="btn btn-success">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        &nbsp;
+                        Vytvořit objednávku
+                    </a>
                 </div>
             </div>
         </div>
@@ -16,13 +20,13 @@
             <div class="col-12">
                 <br>
                 <p>
-                    Export:
-                    <a href="/orders/export/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí</a>
-                    <a href="/orders/export/{{$day = 'Úterý'}}" class="btn btn-export">Úterý</a>
-                    <a href="/orders/export/{{$day = 'Středa'}}" class="btn btn-export">Středa</a>
-                    <a href="/orders/export/{{$day = 'Čtvrtek'}}" class="btn btn-export">Čtvrtek</a>
-                    <a href="/orders/export/{{$day = 'Pátek'}}" class="btn btn-export">Pátek</a>
-                    <a href="/orders/export/{{$day = 'Vše'}}" class="btn btn-export">Vše</a>
+                    Export objednávek:&nbsp;
+                    <a href="/orders/export/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí ({{$orders_count['monday']}})</a>
+                    <a href="/orders/export/{{$day = 'Úterý'}}" class="btn btn-export">Úterý ({{$orders_count['tuesday']}})</a>
+                    <a href="/orders/export/{{$day = 'Středa'}}" class="btn btn-export">Středa ({{$orders_count['wednesday']}})</a>
+                    <a href="/orders/export/{{$day = 'Čtvrtek'}}" class="btn btn-export">Čtvrtek ({{$orders_count['thursday']}})</a>
+                    <a href="/orders/export/{{$day = 'Pátek'}}" class="btn btn-export">Pátek ({{$orders_count['friday']}})</a>
+                    <a href="/orders/export/{{$day = 'Vše'}}" class="btn btn-export">Vše ({{$orders_count['all']}})</a>
                 </p>
                 <br>
                 <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
@@ -55,7 +59,6 @@
                 setTimeout(() => {
                     $('.client-add-alert').hide();
                 }, 5000);
-
             });
         </script>
 
@@ -65,28 +68,28 @@
     <script type="text/javascript">
         $(function () {
             console.log("test")
-          var table = $('.yajra-datatable').DataTable({
-              processing: true,
-              serverSide: true,
-              responsive: true,
-              ajax: "{{ route('orders.list') }}",
-              columns: [
-                  {data: 'id', name: 'id'},
-                  {data: 'name', name: 'name'},
-                  {data: 'full_price', name: 'full_price'},
-                  {data: 'day', name: 'day'},
-                  {data: 'created_at', name: 'created_at'},
-                  {
-                      data: 'action',
-                      name: 'action',
-                      orderable: true,
-                      searchable: true
-                  },
-              ],
-              language: {
-                  url: 'https://cdn.datatables.net/plug-ins/1.11.4/i18n/cs.json',
-              }
-          });
+            var table = $('.yajra-datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: "{{ route('orders.list') }}",
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'full_price', name: 'full_price'},
+                    {data: 'client_day', name: 'client_day'},
+                    {data: 'created_at', name: 'created_at'},
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                ],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.4/i18n/cs.json',
+                }
+            });
 
         });
 

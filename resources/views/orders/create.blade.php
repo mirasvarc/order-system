@@ -26,7 +26,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group mt-3 ml-5 mr-5">
+                            {{--<div class="form-group mt-3 ml-5 mr-5">
                                 <label for="day">Den závozu</label>
                                 <select type="text" name="day" class="form-control">
                                     <option value=""></option>
@@ -36,7 +36,7 @@
                                     <option value="Čtvrtek">Čtvrtek</option>
                                     <option value="Pátek">Pátek</option>
                                 </select>
-                            </div>
+                            </div>--}}
                             <div class="form-group mb-2 mt-3 ml-5 mr-5">
                                 <label for="note">Poznámka</label>
                                 <textarea name="note" class="form-control" rows="10"></textarea>
@@ -56,7 +56,7 @@
                                         {{$product->name}}
                                     </div>
                                     <div class="product-price">
-                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" value="{{$product->price}}">&nbsp; Kč
+                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" step="0.1" value="{{$product->price}}">&nbsp; Kč
                                     </div>
                                     <div class="product-count">
                                         <input type="number" name="product[{{$product->id}}]" id="product-count-input" value="0" min="0">&nbsp; Kg

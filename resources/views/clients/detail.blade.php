@@ -5,7 +5,7 @@
 
 <div class="container client-detail-container">
     <br>
-    <a href="/clients" class="client-detail-back">Zpět</a>
+    <a href="javascript:history.back()" class="client-detail-back">Zpět</a>
     <br>
     <div class="row client-detail-row">
         <div class="col-12 col-md-6 col-xs-12 client-detail-col">
@@ -80,7 +80,7 @@
             <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Objednávka #</th>
                     <th scope="col">Cena (Kč)</th>
                     <th scope="col">Den závozu</th>
                     <th scope="col">Datum vytvoření</th>

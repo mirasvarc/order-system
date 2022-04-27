@@ -33,8 +33,8 @@ class ClientController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($client){
-                    $actionBtn = '<a href="/clients/'.$client->id.'" class="edit btn btn-success btn-sm">Otevřít</a>
-                                  <a href="/clients/edit/'.$client->id.'" class="edit btn btn-success btn-sm">Upravit</a>
+                    $actionBtn = '<a href="/clients/'.$client->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>&nbsp;Zobrazit</a>&nbsp;
+                                  <a href="/clients/edit/'.$client->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Upravit</a>
                                  ';
                     return $actionBtn;
                 })

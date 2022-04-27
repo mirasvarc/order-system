@@ -48,7 +48,8 @@
 .client-list-row .title {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
   margin-bottom: 50px;
 }
 @media (max-width: 991px) {
@@ -59,6 +60,10 @@
 .client-list-row .title .btn {
   min-width: 85px;
   height: 38px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 991px) {
   .client-list-row .title .btn {
@@ -212,6 +217,38 @@ body {
   font-size: 40px;
 }
 
+.btn.delete {
+  background-color: #eb5959 !important;
+}
+
+.btn-export {
+  background-color: #58c150 !important;
+  padding: 0 5px !important;
+  transition: transform 0.3s;
+}
+
+.btn-export:hover {
+  background-color: #58c150 !important;
+  transform: translateY(-2px);
+  transition: transform 0.3s;
+  padding: 0 5px !important;
+}
+
+#admin {
+  margin-left: 15%;
+  width: 85%;
+  padding: 5%;
+}
+#admin .user-table {
+  width: 60%;
+}
+#admin .user-table tr th, #admin .user-table tr td {
+  max-width: 200px;
+}
+#admin .btn {
+  min-width: 110px;
+}
+
 .admin-nav {
   width: 15%;
   height: 100vh;
@@ -240,6 +277,22 @@ body {
 .admin-nav .admin-menu-items .admin-menu-item:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.btn-is_admin {
+  background-color: #58c150 !important;
+}
+
+.btn-is_not_admin {
+  background-color: #eb5959 !important;
+}
+
+.btn-verified {
+  background-color: #58c150 !important;
+}
+
+.btn-not_verified {
+  background-color: #eb5959 !important;
 }
 /*
 ! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com

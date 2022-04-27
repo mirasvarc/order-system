@@ -22,7 +22,17 @@ class OrderController extends Controller
     {
         $orders = Order::All();
 
-        return view('orders.index')->with(['orders' => $orders]);
+        $orders_count = [
+            "monday" => Order::where('day', 'Pondělí')->count(),
+            "tuesday" => Order::where('day', 'Úterý')->count(),
+            "wednesday" => Order::where('day', 'Středa')->count(),
+            "thursday" => Order::where('day', 'Čtvrtek')->count(),
+            "friday" => Order::where('day', 'Pátek')->count(),
+            "all" => Order::count(),
+        ];
+       
+
+        return view('orders.index')->with(['orders' => $orders, 'orders_count' => $orders_count]);
     }
 
     public function getOrders(Request $request)
@@ -30,14 +40,16 @@ class OrderController extends Controller
         if ($request->ajax()) {
             $data = Order::latest()->get();
             $data = Order::addSelect(['name' => Client::select('name')
-                        ->whereColumn('id', 'orders.client_id')
+                            ->whereColumn('id', 'orders.client_id')
+                        ])->addSelect(['client_day' => Client::select('day')
+                            ->whereColumn('id', 'orders.client_id')
                         ])->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($order){
-                    $actionBtn = '<a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm">Otevřít</a>
-                                  <a href="/orders/delete/'.$order->id.'" class="edit btn btn-success btn-sm">Odstranit</a>';
+                    $actionBtn = '<a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>&nbsp;Zobrazit</a>&nbsp;
+                                  <a href="/orders/delete/'.$order->id.'" class="delete btn btn-success btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Odstranit</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -55,8 +67,8 @@ class OrderController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($order){
-                    $actionBtn = '<a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm">Otevřít</a>
-                                  <a href="/orders/delete/'.$order->id.'" class="edit btn btn-success btn-sm">Odstranit</a>';
+                    $actionBtn = '<a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>&nbsp;Zobrazit</a>&nbsp;
+                                  <a href="/orders/delete/'.$order->id.'" class="delete btn btn-success btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Odstranit</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -85,11 +97,13 @@ class OrderController extends Controller
     public function store(Request $request)
     {
        // dd($request);
+        $client = Client::where('id', $request->clients)->first();
+
         $order = new Order();
         $order->client_id = $request->clients;
         $order->full_price = null;
         $order->note = $request->note;
-        $order->day = $request->day;
+        $order->day = $client->day;
         $order->save();
 
         $price = 0;
@@ -101,11 +115,11 @@ class OrderController extends Controller
             $order_item->client_id = $request->clients;
             $order_item->item_id = $key;
             $order_item->quantity = $product;
-            $order_item->price = intval($request->product_price[$key]);
+            $order_item->price = floatval($request->product_price[$key]);
             $order_item->unit = "kg";
             $order_item->save();
 
-            $price += $product * intval($request->product_price[$key]);
+            $price += $product * floatval($request->product_price[$key]);
         }
 
         $order = Order::where('id', $order->id)->first();
@@ -164,9 +178,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $client = Client::where('id', $request->clients)->first();
+
         $order = Order::find($id);
         $order->note = $request->note;
-        $order->day = $request->day;
+        $order->day = $client->day;
         $order->save();
 
         $price = 0;
@@ -228,17 +244,19 @@ class OrderController extends Controller
             $final_orders[$key]['note'] = $client->note;
 
             $orders = Order::where('client_id', $client->id)->get();
-            foreach($orders as $key2 => $order) {
-                $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
-                $final_orders[$key]['orders'][$key2]['note'] = $order->note;
+            if($orders) {
+                foreach($orders as $key2 => $order) {
+                    $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
+                    $final_orders[$key]['orders'][$key2]['note'] = $order->note;
 
-                $order_items = OrderItem::where('order_id', $order->id)->get();
-                foreach($order_items as $key3 => $item) {
-                    $product = Product::where('id', $item->item_id)->first();
-                    $final_orders[$key]['orders'][$key2]['items'][$key3]['product'] = $product->name;
-                    $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
-                    $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
-                    $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
+                    $order_items = OrderItem::where('order_id', $order->id)->get();
+                    foreach($order_items as $key3 => $item) {
+                        $product = Product::where('id', $item->item_id)->first();
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['product'] = $product->name;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
+                    }
                 }
             }
         }

@@ -25,3 +25,20 @@ body {
 .login-title {
     font-size: 40px;
 }
+
+.btn.delete {
+    background-color: $color-delete !important;
+}
+
+.btn-export {
+    background-color: $color-primary  !important;
+    padding: 0 5px  !important;
+    transition: transform 0.3s;
+}
+
+.btn-export:hover {
+    background-color: $color-primary  !important;
+    transform: translateY(-2px);
+    transition: transform 0.3s;
+    padding: 0 5px  !important;
+}

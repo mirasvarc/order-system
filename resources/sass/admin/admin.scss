@@ -1,3 +1,24 @@
+#admin {
+    margin-left: 15%;
+    width: 85%;
+    padding: 5%;
+
+    .user-table {
+        width: 60%;
+        tr {
+            th, td {
+                max-width: 200px;
+            }
+        }
+        
+    }
+
+    
+    .btn {
+        min-width: 110px;
+    }
+}
+
 .admin-nav {
     width: 15%;
     height: 100vh;
@@ -28,4 +49,22 @@
             }
         }
     }
+}
+
+
+
+.btn-is_admin {
+    background-color: $color-primary !important;
+}
+
+.btn-is_not_admin {
+    background-color: $color-delete !important;
+}
+
+.btn-verified {
+    background-color: $color-primary !important;
+}
+
+.btn-not_verified {
+    background-color: $color-delete !important;
 }
