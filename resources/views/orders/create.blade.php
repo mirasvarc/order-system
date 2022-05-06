@@ -37,9 +37,13 @@
                                     <option value="Pátek">Pátek</option>
                                 </select>
                             </div>--}}
-                            <div class="form-group mb-2 mt-3 ml-5 mr-5">
+                            <div class="form-group mt-3 ml-5 mr-5">
                                 <label for="note">Poznámka</label>
                                 <textarea name="note" class="form-control" rows="10"></textarea>
+                            </div>
+                            <div class="form-group mt-3 ml-5 mr-5 mb-2">
+                                <label for="date">Datum</label>
+                                <input type="date" class="form-control" name="date">
                             </div>
                         </div>
                     </div>

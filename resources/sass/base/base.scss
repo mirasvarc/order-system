@@ -42,3 +42,9 @@ body {
     transition: transform 0.3s;
     padding: 0 5px  !important;
 }
+
+@media(min-width:991px) {
+    .br-mobile {
+        display: none;
+    }
+}

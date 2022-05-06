@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\OrderItem;
 use DataTables;
 use PDF;
+use Carbon\Carbon;
 use DOMDocument;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,7 +46,7 @@ class OrderController extends Controller
                         ])->addSelect(['client_day' => Client::select('day')
                             ->whereColumn('id', 'orders.client_id')
                         ])->get();
-
+        
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($order){
@@ -105,6 +106,7 @@ class OrderController extends Controller
         $order->full_price = null;
         $order->note = $request->note;
         $order->day = $client->day;
+        $order->date = $request->date;
         $order->save();
 
         $price = 0;

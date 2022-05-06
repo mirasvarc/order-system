@@ -37,6 +37,7 @@
                 width: 85px;
                 border: 1px solid #ced4da;
                 border-radius: 0.25rem;
+                text-align: center;
             }
         }
 
@@ -67,6 +68,10 @@
                 text-align: center;
                 border: 1px solid #ced4da;
                 border-radius: 0.25rem;
+
+                @media(max-width:991px) {
+                    max-width: 85px;
+                }
             }
         }
     }

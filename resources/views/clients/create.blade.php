@@ -12,7 +12,7 @@
         </div>
 
         <div class="row">
-            <div class="col-6 offset-3">
+            <div class="col-md-6 col-xs-12 offset-md-3">
                 <form method="POST" action="/clients/add" class="form-control">
                     @csrf
                     <div class="form-group mb-2 mt-3 ml-5 mr-5">

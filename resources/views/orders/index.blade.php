@@ -21,6 +21,7 @@
                 <br>
                 <p>
                     Export objednávek:&nbsp;
+                    <br class="br-mobile">
                     <a href="/orders/export/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí ({{$orders_count['monday']}})</a>
                     <a href="/orders/export/{{$day = 'Úterý'}}" class="btn btn-export">Úterý ({{$orders_count['tuesday']}})</a>
                     <a href="/orders/export/{{$day = 'Středa'}}" class="btn btn-export">Středa ({{$orders_count['wednesday']}})</a>
@@ -36,7 +37,7 @@
                         <th scope="col">Klient</th>
                         <th scope="col">Cena (Kč)</th>
                         <th scope="col">Den závozu</th>
-                        <th scope="col">Datum vytvoření</th>
+                        <th scope="col">Datum objednávky</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -78,7 +79,7 @@
                     {data: 'name', name: 'name'},
                     {data: 'full_price', name: 'full_price'},
                     {data: 'client_day', name: 'client_day'},
-                    {data: 'created_at', name: 'created_at'},
+                    {data: 'date', name: 'date'},
                     {
                         data: 'action',
                         name: 'action',

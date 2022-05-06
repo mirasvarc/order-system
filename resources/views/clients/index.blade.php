@@ -24,6 +24,7 @@
                         <th scope="col">Jméno a Příjmení / Společnost</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefon</th>
+                        <th scope="col">Den závozu</th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -73,6 +74,7 @@
                   {data: 'name', name: 'name', id: 'id'},
                   {data: 'email', name: 'email'},
                   {data: 'phone', name: 'phone'},
+                  {data: 'day', name: 'day'},
                   {
                       data: 'action',
                       name: 'action',

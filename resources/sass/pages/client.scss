@@ -21,7 +21,6 @@
             justify-content: center;
 
             @media(max-width:991px) {
-                max-width: 50%;
                 margin: 10px 30px;
             }
         }
@@ -77,6 +76,7 @@
 
         .client-detail-col {
             padding: 0px 50px;
+            overflow: auto;
 
             @media(max-width:991px) {
                 padding: 0;
