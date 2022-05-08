@@ -30,6 +30,33 @@
                     <a href="/orders/export/{{$day = 'Vše'}}" class="btn btn-export">Vše ({{$orders_count['all']}})</a>
                 </p>
                 <br>
+                <p>
+                    Detailní export:&nbsp;
+                    <br>
+                    <br>
+                    <form action="{{route('exportCustom')}}" method="POST">
+                        @csrf
+                        <label for="export_day_select">Den:</label>
+                        <select name="export_day_select">
+                            <option value=""></option>
+                            <option value="Pondělí">Pondělí</option>
+                            <option value="Úterý">Úterý</option>
+                            <option value="Středa">Středa</option>
+                            <option value="Čtvrtek">Čtvrtek</option>
+                            <option value="Pátek">Pátek</option>
+                            <option value="Vše">Vše</option>
+                        </select>
+                        &nbsp;
+                        <label for="date_from">od:</label>
+                        <input type="date" name="date_from">
+                        &nbsp;
+                        <label for="date_to">do:</label>
+                        <input type="date" name="date_to">
+                        &nbsp;
+                        <input type="submit" class="btn btn-success" value="Exportovat">
+                    </form>
+                </p>
+                <br>
                 <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
                     <thead>
                       <tr>

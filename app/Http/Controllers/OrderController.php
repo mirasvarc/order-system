@@ -277,4 +277,52 @@ class OrderController extends Controller
 
 
     }
+
+    public function exportCustom(Request $request) {
+        $final_orders = [];
+
+        if($request->export_day_select == 'Vše') {
+            $clients = Client::get();
+        } else {
+            $clients = Client::where('day', $request->export_day_select)->get();
+        }
+
+
+
+        foreach($clients as $key => $client) {
+            $final_orders[$key]['client'] = $client->name;
+            $final_orders[$key]['email'] = $client->email;
+            $final_orders[$key]['phone'] = $client->phone;
+            $final_orders[$key]['address'] = $client->street." ".$client->street_number.", ".$client->city." ".$client->zip;
+            $final_orders[$key]['note'] = $client->note;
+
+            $orders = Order::where('client_id', $client->id)->whereDate('date', '>=', $request->date_from)->whereDate('date', '<=', $request->date_to)->get();
+            if($orders) {
+                foreach($orders as $key2 => $order) {
+                    $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
+                    $final_orders[$key]['orders'][$key2]['note'] = $order->note;
+
+                    $order_items = OrderItem::where('order_id', $order->id)->get();
+                    foreach($order_items as $key3 => $item) {
+                        $product = Product::where('id', $item->item_id)->first();
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['product'] = $product->name;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
+                    }
+                }
+            }
+        }
+
+
+        $data = [
+            'day' => $request->export_day_select,
+            'orders' => $final_orders,
+        ];
+
+
+        $pdf = PDF::loadView('pdfs.dayOrdersAllPDF', $data);
+
+        return $pdf->stream("day_orders_".$request->export_day_select."_".time().".pdf");
+    }
 }

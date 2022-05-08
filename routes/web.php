@@ -52,6 +52,7 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/client-orders-list', [OrderController::class, 'getClientOrders'])->name('client_orders.list');
     Route::get('/{id}', [OrderController::class, 'show']);
     Route::get('/export/{day}', [OrderController::class, 'exportDayOrders']);
+    Route::post('/export/custom', [OrderController::class, 'exportCustom'])->name('exportCustom');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

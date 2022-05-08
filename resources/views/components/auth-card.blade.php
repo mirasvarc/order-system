@@ -1,6 +1,6 @@
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-grey-custom">
+    <img class="login-logo" src="/images/logo_af.png">
     <div>
-        {{--{{ $logo }}--}}
         <h1 class="login-title">Přihlášení</h1>
     </div>
 
