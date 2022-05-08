@@ -76,3 +76,18 @@
         }
     }
 }
+
+
+.product-edit-card {
+    margin-bottom: 25px;
+    .product-price,
+    .product-count {
+        display: flex;
+        align-items: center;
+        margin-top: 25px;
+    }
+
+    .label {
+        min-width: 70px;
+    }
+}

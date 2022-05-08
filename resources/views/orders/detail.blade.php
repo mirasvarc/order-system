@@ -39,6 +39,7 @@
                     <th>Cena</th>
                     <th>Množství</th>
                     <th>Cena celkem</th>
+                    <th></th>
                 </tr>
                 @foreach ($order_items as $item)
                     @if($item->quantity > 0)
@@ -47,6 +48,7 @@
                         <td>{{$item->price}} Kč/{{$item->unit}}</td>
                         <td>{{$item->quantity}} {{$item->unit}}</td>
                         <td>{{$item->quantity * $item->price}} Kč</td>
+                        <td><a href="item/edit/{{$item->id}}">Upravit</a></td>
                     </tr>
                     @endif
                 @endforeach

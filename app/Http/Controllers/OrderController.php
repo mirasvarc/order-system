@@ -194,6 +194,43 @@ class OrderController extends Controller
         return redirect('/orders/'.$id.'?add_success');
     }
 
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editItem($id)
+    {
+        $item = OrderItem::find($id);
+        $product = Product::find($item->item_id);
+
+        return view('orders.item_edit')->with(['item' => $item, 'product' => $product]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateItem(Request $request, $id)
+    {
+    
+        $item = OrderItem::find($id);
+
+        $item->quantity = $request->quantity;
+        $item->price = $request->price;
+        $item->save();
+
+        $this->calculateOrderPrice($item->order_id);
+
+        return redirect('/orders/'.$item->order_id.'?add_success');
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -305,5 +342,20 @@ class OrderController extends Controller
         $pdf = PDF::loadView('pdfs.dayOrdersAllPDF', $data);
 
         return $pdf->stream("day_orders_".$request->export_day_select."_".time().".pdf");
+    }
+
+
+    public function calculateOrderPrice($order_id) {
+        $order = Order::find($order_id);
+        $order_items = OrderItem::where('order_id', $order_id)->get();
+
+        $price = 0;
+
+        foreach($order_items as $item) {
+            $price += ($item->price * $item->quantity);
+        }
+
+        $order->full_price = $price;
+        $order->save();
     }
 }
