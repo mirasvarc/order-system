@@ -5,11 +5,11 @@
 
 <div class="container client-detail-container">
     <br>
-    <a href="javascript:history.back()" class="client-detail-back">Zpět</a>
+    <a href="/orders" class="client-detail-back">Zpět</a>
     <br>
     <div class="row client-detail-row">
         <div class="col-12 client-detail-col">
-            <h2>Detail objednávky č.{{$order->id}}</h2>
+            <h2>Detail objednávky č.{{$order->id}} &nbsp; <a href="edit/{{$order->id}}" class="btn btn-success">Upravit</a></h2>
             <br>
             <table>
                 <tr>
@@ -17,11 +17,15 @@
                     <td>{{$order->id}}</td>
                 </tr>
                 <tr>
+                    <td>Datum objednávky:</td>
+                    <td>{{$order->date}}</td>
+                </tr>
+                <tr>
                     <td>Klient:</td>
                     <td>{{$order->client}}</td>
                 </tr>
                 <tr>
-                    <td>Cena:</td>
+                    <td>Cena objednávky:</td>
                     <td>{{$order->full_price}} Kč</td>
                 </tr>
             </table>
@@ -31,18 +35,20 @@
             <br>
             <table>
                 <tr>
-                    <th>Číslo produktu:</th>
                     <th>Produkt</th>
                     <th>Cena</th>
                     <th>Množství</th>
+                    <th>Cena celkem</th>
                 </tr>
                 @foreach ($order_items as $item)
+                    @if($item->quantity > 0)
                     <tr>
-                        <td>{{$item->id}}</td>
                         <td>{{$item->product}}</td>
                         <td>{{$item->price}} Kč/{{$item->unit}}</td>
                         <td>{{$item->quantity}} {{$item->unit}}</td>
+                        <td>{{$item->quantity * $item->price}} Kč</td>
                     </tr>
+                    @endif
                 @endforeach
             </table>
 

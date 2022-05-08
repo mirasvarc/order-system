@@ -33,6 +33,10 @@
                                     <option value="Pátek" {{ $order->day == 'Pátek' ? 'selected' : '' }}>Pátek</option>
                                 </select>
                             </div>
+                            <div class="form-group mt-3 ml-5 mr-5 mb-2">
+                                <label for="date">Datum</label>
+                                <input type="date" class="form-control" name="date" value="{{$order->date}}">
+                            </div>
                             <div class="form-group mb-2 mt-3 ml-5 mr-5">
                                 <label for="note">Poznámka</label>
                                 <textarea name="note" class="form-control" rows="10">{{$order->note}}</textarea>
@@ -42,7 +46,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-xs-12 offset-md-3">
-                            <div class="product-container">
+                               {{--<div class="product-container">
                                 <div class="form-group mb-2 mt-3 ml-5 mr-5">
                                     <h3>Produkty</h3>
                                 </div>
@@ -60,10 +64,10 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </div>
+                            </div>--}}
 
                             <div class="form-group mb-3 w-20 ml-5 mr-5">
-                                <input type="submit" class="form-control btn btn-success" value="Vytvořit">
+                                <input type="submit" class="form-control btn btn-success" value="Uložit">
                             </div>
                         </div>
                     </div>

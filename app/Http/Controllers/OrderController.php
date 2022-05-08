@@ -181,36 +181,17 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::where('id', $request->clients)->first();
-
+    
         $order = Order::find($id);
+
+        $client = Client::where('id', $order->client_id)->first();
+
         $order->note = $request->note;
         $order->day = $client->day;
+        $order->date = $request->date;
         $order->save();
 
-        $price = 0;
-
-        $i = 0;
-        foreach($request->product as $key => $product) {
-            dd($request->product_id[$i]);
-            $order_item = OrderItem::find($request->product_id[$i]);
-            $order_item->order_id = $order->id;
-            $order_item->item_id = $key;
-            $order_item->quantity = $product;
-            $order_item->unit = "kg";
-            $order_item->save();
-
-            $product_item = Product::where('id', $request->product_id[$i])->first();
-            $price += $product * $product_item->price;
-
-            $i++;
-        }
-
-        $order = Order::where('id', $order->id)->first();
-        $order->full_price = $price;
-        $order->save();
-
-        return redirect('/orders?add_success');
+        return redirect('/orders/'.$id.'?add_success');
     }
 
     /**
