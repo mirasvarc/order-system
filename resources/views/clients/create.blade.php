@@ -58,6 +58,16 @@
                     </div>
 
                     <div class="form-group mb-3 ml-5 mr-5">
+                        <label for="ic">IČ</label>
+                        <input type="text" name="ic" class="form-control">
+                    </div>
+
+                    <div class="form-group mb-3 ml-5 mr-5">
+                        <label for="dic">DIČ</label>
+                        <input type="text" name="dic" class="form-control">
+                    </div>
+
+                    <div class="form-group mb-3 ml-5 mr-5">
                         <label for="day">Den závozu</label>
                         <select type="text" name="day" class="form-control">
                             <option value=""></option>

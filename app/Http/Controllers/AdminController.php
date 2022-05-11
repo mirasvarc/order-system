@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\User;
+use App\Models\UserRole;
 use App\Models\Order;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
 
+use function Symfony\Component\String\b;
 
 class AdminController extends Controller
 {
@@ -33,4 +35,21 @@ class AdminController extends Controller
         ]);
     }
 
+
+    public function setRole() {
+        $user = $_POST['user'];
+        $role = $_POST['role'];
+
+        if($role_old = UserRole::where('user_id', $user)->where('role_id', $role)->first()) {
+            $role_old->delete();
+        } else {
+            $role_new = new UserRole();
+            $role_new->user_id = $user;
+            $role_new->role_id = $role;
+            $role_new->save();
+        }
+
+        return true;
+        
+    }
 }

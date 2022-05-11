@@ -29,7 +29,6 @@
                     <a href="/orders/export/{{$day = 'Pátek'}}" class="btn btn-export">Pátek ({{$orders_count['friday']}})</a>
                     <a href="/orders/export/{{$day = 'Vše'}}" class="btn btn-export">Vše ({{$orders_count['all']}})</a>
                 </p>
-                <br>
                 <p>
                     Detailní export:&nbsp;
                     <br>

@@ -23,6 +23,15 @@
                     <td>Telefon:</td>
                     <td>{{$client->phone}}</td>
                 </tr>
+                
+                <tr>
+                    <td>IČ:</td>
+                    <td>{{$client->ic}}</td>
+                </tr>
+                <tr>
+                    <td>DIČ:</td>
+                    <td>{{$client->dic}}</td>
+                </tr>
                 <tr>
                     <td>Den návozu:</td>
                     <td>{{$client->day}}</td>

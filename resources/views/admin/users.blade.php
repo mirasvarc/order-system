@@ -8,8 +8,8 @@
             <tr>
                 <th>Jméno</th>
                 <th>Email</th>
-                <th>Administrátor</th>
                 <th>Povolen</th>
+                {{--<th>Povolen</th>--}}
             </tr>
         @foreach($users as $user)
             
@@ -18,18 +18,18 @@
                 <td>{{$user->email}}</td>
                 <td>
                     @if($user->isAdmin())
-                        <a href="javascript:void(0)" class="btn btn-is_admin"><i class="fa-solid fa-circle-check"></i>&nbsp;Ano</a>
+                        <a href="javascript:void(0)" data-user="{{$user->id}}" data-role="1" class="btn btn-is_admin"><i class="fa-solid fa-circle-check"></i>&nbsp;Ano</a>
                     @else
-                        <a href="javascript:void(0)" class="btn btn-is_not_admin"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Ne</a>
+                        <a href="javascript:void(0)" data-user="{{$user->id}}" data-role="1" class="btn btn-is_not_admin"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Ne</a>
                     @endif
                 </td>
-                <td>
+             {{--   <td>
                     @if($user->verified)
-                        <a href="javascript:void(0)" class="btn btn-verified"><i class="fa-solid fa-circle-check"></i>&nbsp;Ano</a>
+                        <a href="javascript:void(0)" data-user="{{$user->id}}" data-role="2" class="btn btn-verified"><i class="fa-solid fa-circle-check"></i>&nbsp;Ano</a>
                     @else
-                        <a href="javascript:void(0)" class="btn btn-not_verified"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Ne</a>
+                        <a href="javascript:void(0)" data-user="{{$user->id}}" data-role="2" class="btn btn-not_verified"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Ne</a>
                     @endif
-                </td>
+                </td>--}}
             </tr>
             
         @endforeach
@@ -81,7 +81,18 @@
             });
 
 
-        
+            $('.btn').on('click', function(){
+                var role = $(this).data('role');
+                var user = $(this).data('user');
+                $.post('/admin/change-role', {
+                    role: role,
+                    user: user,
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                })
+                .done(function(data){
+                    location.reload();
+                });
+            });
         });
 
 

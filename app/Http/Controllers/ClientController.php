@@ -72,6 +72,8 @@ class ClientController extends Controller
         $client->country = $request->country;
         $client->note = $request->note;
         $client->day = $request->day;
+        $client->ic = $request->ic;
+        $client->dic = $request->dic;
         $client->save();
 
         return redirect('/clients?add_success');
@@ -123,6 +125,8 @@ class ClientController extends Controller
         $client->country = $request->country;
         $client->note = $request->note;
         $client->day = $request->day;
+        $client->ic = $request->ic;
+        $client->dic = $request->dic;
         $client->save();
 
         return redirect('/clients?add_success');
