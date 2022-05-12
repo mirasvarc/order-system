@@ -40,6 +40,7 @@ class AdminController extends Controller
         $user = $_POST['user'];
         $role = $_POST['role'];
 
+        
         if($role_old = UserRole::where('user_id', $user)->where('role_id', $role)->first()) {
             $role_old->delete();
         } else {

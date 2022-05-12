@@ -52,7 +52,7 @@
             $('.btn-is_not_admin').on('mouseover', function() {
                 $(this).addClass('btn-is_admin')
                        .removeClass('btn-is_not_admin')
-                       .html('<i class="fa-solid fa-circle-plus"></i>&nbsp;Přidat')     
+                       .html('<i class="fa-solid fa-circle-plus"></i>&nbsp;Povolit')     
             }).on('mouseout', function() {
                 $(this).html('<i class="fa-solid fa-circle-xmark"></i>&nbsp;Ne')
                         .addClass('btn-is_not_admin')

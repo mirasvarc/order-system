@@ -50,7 +50,8 @@ class OrderController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($order){
-                    $actionBtn = '<a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>&nbsp;Zobrazit</a>&nbsp;
+                    $actionBtn = '<a href="/orders/bill/'.$order->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;Dodací list</a>&nbsp;
+                                  <a href="/orders/'.$order->id.'" class="edit btn btn-success btn-sm"><i class="fa-solid fa-eye"></i>&nbsp;Zobrazit</a>&nbsp;
                                   <a href="/orders/delete/'.$order->id.'" class="delete btn btn-success btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Odstranit</a>';
                     return $actionBtn;
                 })
@@ -357,5 +358,37 @@ class OrderController extends Controller
 
         $order->full_price = $price;
         $order->save();
+    }
+
+    public function createBill($id) {
+
+        $order = Order::find($id);
+        $order_items = OrderItem::addSelect(['product' => Product::select('name')
+                                  ->whereColumn('id', 'order_items.item_id')
+                                ])->where('order_id', $order->id)
+                                ->where('quantity', '>', 0)
+                                ->get();
+        $client = Client::find($order->client_id);
+
+        $full_price = [
+            'price' => 0,
+            'price_vat' => 0
+        ];
+
+        foreach($order_items as $item) {
+            $full_price['price'] += $item->price * $item->quantity;
+            $full_price['price_vat'] += ($item->price * $item->quantity) * 1.15;
+        }
+
+        $data = [
+            'client' => $client,
+            'order' => $order,
+            'order_items' => $order_items,
+            'full_price' => $full_price
+        ];
+
+        $pdf = PDF::loadView('pdfs.BillPDF', $data);
+
+        return $pdf->stream("dodaci_list_".time().".pdf");
     }
 }
