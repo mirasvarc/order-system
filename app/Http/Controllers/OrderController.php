@@ -273,12 +273,14 @@ class OrderController extends Controller
 
                     $order_items = OrderItem::where('order_id', $order->id)->get();
                     foreach($order_items as $key3 => $item) {
-                        $product = Product::where('id', $item->item_id)->first();
-                        $final_orders[$key]['orders'][$key2]['items'][$key3]['product'] = $product->name;
-                        $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
-                        $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
-                        $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
-                        $final_orders[$key]['orders'][$key2]['items'][$key3]['price_vat'] = ($item->quantity * $product->price) * 1.15;
+                        if($item->quantity > 0) {
+                            $product = Product::where('id', $item->item_id)->first();
+                            $final_orders[$key]['orders'][$key2]['items'][$key3]['product'] = $product->name;
+                            $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
+                            $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
+                            $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
+                            $final_orders[$key]['orders'][$key2]['items'][$key3]['price_vat'] = ($item->quantity * $product->price) * 1.15;
+                        }
                     }
                 }
             }
