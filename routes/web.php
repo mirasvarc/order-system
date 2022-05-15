@@ -56,6 +56,7 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/item/edit/{id}', [OrderController::class, 'editItem']);
     Route::post('/item/edit/{id}', [OrderController::class, 'updateItem']);
     Route::get('/bill/{id}', [OrderController::class, 'createBill']);
+    Route::get('/export/bill/{day}', [OrderController::class, 'createDayBills']);
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

@@ -56,6 +56,16 @@
                     </form>
                 </p>
                 <br>
+                <p>Export dodacích listů:&nbsp;
+                    <br class="br-mobile">
+                    <a href="/orders/export/bill/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí ({{$orders_count['monday']}})</a>
+                    <a href="/orders/export/bill/{{$day = 'Úterý'}}" class="btn btn-export">Úterý ({{$orders_count['tuesday']}})</a>
+                    <a href="/orders/export/bill/{{$day = 'Středa'}}" class="btn btn-export">Středa ({{$orders_count['wednesday']}})</a>
+                    <a href="/orders/export/bill/{{$day = 'Čtvrtek'}}" class="btn btn-export">Čtvrtek ({{$orders_count['thursday']}})</a>
+                    <a href="/orders/export/bill/{{$day = 'Pátek'}}" class="btn btn-export">Pátek ({{$orders_count['friday']}})</a>
+                    <a href="/orders/export/bill/{{$day = 'Vše'}}" class="btn btn-export">Vše ({{$orders_count['all']}})</a>
+                </p>
+                <br>
                 <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
                     <thead>
                       <tr>

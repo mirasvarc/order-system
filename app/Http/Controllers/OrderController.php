@@ -246,9 +246,7 @@ class OrderController extends Controller
         return redirect('/orders');
     }
 
-
-    public function exportDayOrders($day) {
-
+    public function getDayOrders($day) {
         $final_orders = [];
 
         if($day == 'Vše') {
@@ -262,6 +260,8 @@ class OrderController extends Controller
             $final_orders[$key]['client'] = $client->name;
             $final_orders[$key]['email'] = $client->email;
             $final_orders[$key]['phone'] = $client->phone;
+            $final_orders[$key]['ic'] = $client->ic;
+            $final_orders[$key]['dic'] = $client->dic;
             $final_orders[$key]['address'] = $client->street." ".$client->street_number.", ".$client->city." ".$client->zip;
             $final_orders[$key]['note'] = $client->note;
 
@@ -278,11 +278,20 @@ class OrderController extends Controller
                         $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
                         $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
                         $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['price_vat'] = ($item->quantity * $product->price) * 1.15;
                     }
                 }
             }
         }
 
+        return $final_orders;
+    }
+
+
+    public function exportDayOrders($day) {
+
+        
+        $final_orders = $this->getDayOrders($day);
 
         $data = [
             'day' => $day,
@@ -328,6 +337,7 @@ class OrderController extends Controller
                         $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $product->price;
                         $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
                         $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $product->price;
+                        $final_orders[$key]['orders'][$key2]['items'][$key3]['price_vat'] = ($item->quantity * $product->price) * 1.15;
                     }
                 }
             }
@@ -388,6 +398,20 @@ class OrderController extends Controller
         ];
 
         $pdf = PDF::loadView('pdfs.BillPDF', $data);
+
+        return $pdf->stream("dodaci_list_".time().".pdf");
+    }
+
+    public function createDayBills($day) {
+        $final_orders = $this->getDayOrders($day);
+
+  
+
+        $data = [
+            'final_orders' => $final_orders,
+        ];
+
+        $pdf = PDF::loadView('pdfs.DayBillPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");
     }

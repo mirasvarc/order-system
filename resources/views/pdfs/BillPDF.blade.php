@@ -26,20 +26,20 @@
        
     <table>
         <tr>
-            <td><h1>DODACÍ LIST - DAŇOVÝ DOKLAD</h1></td>
-            <td style="padding-left: 25px"><p>číslo ....................................................</p></td>
+            <td>
+                <h1>DODACÍ LIST</h1>
+                <p>Datum vystavení: {{date('d.m.Y')}}</p>
+
+            </td>
         </tr>
     </table>
-    <p style="margin-top: -22px;margin-left:2px;">(nehodící se škrtněte)</p>
-    <p>Datum vystavení .......................20........ Datum uskut. zdanitelného plnění ...........................20.......</p>
-    <p>Na základě objednávky číslo ..................................................... ze dne ..................................20.......</p>
-
+    
     <table style="width:100%">
         <tr style="width:100%">
-            <td style="width:50%;height:150px;border:1px solid black;border-radius:10px;position:relative;">
+            <td style="width:50%;height:170px;border:1px solid black;border-radius:10px;position:relative;">
                 <p style="position:absolute;top:-15px;left:10px;">Dodavatel:</p>
             </td>
-            <td style="width:50%;height:150px;border:1px solid black;border-radius:10px;position:relative;">
+            <td style="width:50%;height:170px;border:1px solid black;border-radius:10px;position:relative;">
                 <p style="position:absolute;top:-15px;left:10px;">Odběratel:</p>
                 <p style="position:absolute;top:15px;left:10px;">Jméno: {{$client->name}}</p>
                 <p style="position:absolute;top:35px;left:10px;">Adresa: {{$client->street}} {{$client->street_number}}, {{$client->city}} {{$client->zip}}</p>
@@ -85,25 +85,23 @@
             </tr>
         @endfor
     </table>
-    <table style="margin-top: -3px;margin-left:-5px;"> 
+    <table style="margin-top: -3px;margin-left:-3px;"> 
         <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
-            <td style="width: 50px;height:60px;padding:0px 5px;text-align:center;"></td>
-            <td style="width: 250px;height:60px;padding:0px 5px;"></td>
-            <td style="width: 75px;height:60px;padding:0px 5px;text-align:center;"></td>
-            <td style="width: 65px;height:60px;padding:0px 5px;text-align:center;"></td>
+            <td colspan="3" style="width: 400px;height:60px;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
+            <td style="width: 63px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"">{{ $full_price['price']}}</td>
             <td style="width: 45px;height:60px;padding:0px 5px;text-align:center;"></td>
             <td style="width: 60px;height:60px;padding:0px 5px;text-align:center;"></td>
-            <td style="width: 73px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $full_price['price_vat']}}</td>
+            <td style="width: 73px;height:60px;border: 0px solid black;"></td>
         </tr>
     </table>
 
     <table style="border: 1px solid black;border-collapse: collapse;margin-top:15px;">
         <tr style="border: 1px solid black;border-collapse: collapse;">
-            <td style="width:347px;height:70px;position:relative;border: 1px solid black;border-collapse: collapse;">
+            <td style="width:347px;height:100px;position:relative;border: 1px solid black;border-collapse: collapse;">
                 <p style="position: absolute;top:-10px;left:5px;font-size:12px;">Předal<br>(jméno)</p>
             </td>
             
-            <td style="width:347px;height:70px;position:relative;border: 1px solid black;border-collapse: collapse;">
+            <td style="width:347px;height:100px;position:relative;border: 1px solid black;border-collapse: collapse;">
                 <p style="position: absolute;top:-10px;left:5px;font-size:12px;">Převzal<br>(jméno)</p>
             </td>
         </tr>
