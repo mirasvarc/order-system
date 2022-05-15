@@ -285,7 +285,7 @@ class OrderController extends Controller
                 }
             }
         }
-
+     
         return $final_orders;
     }
 
@@ -412,7 +412,7 @@ class OrderController extends Controller
         $data = [
             'final_orders' => $final_orders,
         ];
-
+        
         $pdf = PDF::loadView('pdfs.DayBillPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");

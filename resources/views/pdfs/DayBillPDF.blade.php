@@ -67,23 +67,25 @@
                 $price = 0;
             @endphp
 
-            @foreach($order['orders'] as $order)
-                @foreach($order['items'] as $item)
-                    <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
-                        <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['quantity']}}</td>
-                        <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;">{{$item['product']}}</td>
-                        <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg']}}</td>
-                        <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg'] * $item['quantity']}}</td>
-                        <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">15</td>
-                        <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ (($item['price_per_kg'] * $item['quantity'])*1.15)-($item['price_per_kg'] * $item['quantity']) }}</td>
-                        <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ ($item['price_per_kg'] * $item['quantity'])*1.15 }}</td>
-                    </tr>
-                    @php 
-                        $count++; 
-                        $price += $item['price_per_kg'] * $item['quantity'];
-                    @endphp
+            @if(isset($order['orders']))
+                @foreach($order['orders'] as $order)
+                    @foreach($order['items'] as $item)
+                        <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
+                            <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['quantity']}}</td>
+                            <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;">{{$item['product']}}</td>
+                            <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg']}}</td>
+                            <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg'] * $item['quantity']}}</td>
+                            <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">15</td>
+                            <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ (($item['price_per_kg'] * $item['quantity'])*1.15)-($item['price_per_kg'] * $item['quantity']) }}</td>
+                            <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ ($item['price_per_kg'] * $item['quantity'])*1.15 }}</td>
+                        </tr>
+                        @php 
+                            $count++; 
+                            $price += $item['price_per_kg'] * $item['quantity'];
+                        @endphp
+                    @endforeach
                 @endforeach
-            @endforeach
+            @endif
                     
             @for($i = 0; $i <= (7 - $count); $i++)
                 <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
