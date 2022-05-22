@@ -84,14 +84,13 @@
                 <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
             </tr>
         @endfor
-    </table>
-    <table style="margin-top: -3px;margin-left:-3px;"> 
-        <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
-            <td colspan="3" style="width: 400px;height:60px;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
-            <td style="width: 63px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"">{{ $full_price['price']}}</td>
-            <td style="width: 45px;height:60px;padding:0px 5px;text-align:center;"></td>
-            <td style="width: 60px;height:60px;padding:0px 5px;text-align:center;"></td>
-            <td style="width: 73px;height:60px;border: 0px solid black;"></td>
+
+        <tr style="border: 0px solid black;border-collapse: collapse;font-size:12px;" >
+            <td colspan="3" style="width: 375px;height:60px;border: 0px solid black;border-collapse: collapse;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
+            <td style="width: 65px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $full_price['price']}}</td>
+            <td style="width: 45px;height:60px;padding:0px 5px;text-align:center;border: 0px solid black;border-collapse: collapse;"></td>
+            <td style="width: 60px;height:60px;padding:0px 5px;text-align:center;border: 0px solid black;border-collapse: collapse;"></td>
+            <td style="width: 75px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $full_price['price'] * 1.15}}</td>
         </tr>
     </table>
 
