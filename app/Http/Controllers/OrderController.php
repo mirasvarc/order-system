@@ -281,8 +281,8 @@ class OrderController extends Controller
                             $final_orders[$key2]['orders'][0]['items'][$key3]['product'] = $product->name;
                             $final_orders[$key2]['orders'][0]['items'][$key3]['price_per_kg'] = $item->price;
                             $final_orders[$key2]['orders'][0]['items'][$key3]['quantity'] = $item->quantity;
-                            $final_orders[$key2]['orders'][0]['items'][$key3]['full_price'] = $item->quantity * $product->price;
-                            $final_orders[$key2]['orders'][0]['items'][$key3]['price_vat'] = ($item->quantity * $product->price) * 1.15;
+                            $final_orders[$key2]['orders'][0]['items'][$key3]['full_price'] = $item->quantity * $item->price;
+                            $final_orders[$key2]['orders'][0]['items'][$key3]['price_vat'] = ($item->quantity * $item->price) * 1.15;
                         }
                     }
                 }
