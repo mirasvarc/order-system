@@ -38,6 +38,11 @@
         <tr style="width:100%">
             <td style="width:50%;height:170px;border:1px solid black;border-radius:10px;position:relative;">
                 <p style="position:absolute;top:-15px;left:10px;">Dodavatel:</p>
+                <p style="position:absolute;top:15px;left:10px;">Jméno: Josef Fabičovic</p>
+                <p style="position:absolute;top:35px;left:10px;">Adresa: Ivaň 324, Ivaň 691 23</p>
+                <p style="position:absolute;top:55px;left:10px;">IČ: 75100690</p>
+                <p style="position:absolute;top:75px;left:10px;">DIČ: CZ8706174455</p>
+                <p style="position:absolute;top:95px;left:10px;">Telefon: 773605164</p>
             </td>
             <td style="width:50%;height:170px;border:1px solid black;border-radius:10px;position:relative;">
                 <p style="position:absolute;top:-15px;left:10px;">Odběratel:</p>
