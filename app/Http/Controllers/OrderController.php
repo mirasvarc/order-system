@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use DOMDocument;
 use Illuminate\Support\Facades\Auth;
 
+use function Symfony\Component\String\b;
+
 class OrderController extends Controller
 {
     /**
@@ -246,54 +248,13 @@ class OrderController extends Controller
         return redirect('/orders');
     }
 
-    public function getDayOrders($day) {
-        $final_orders = [];
-
-        if($day == 'Vše') {
-            $clients = Client::get();
-        } else {
-            $clients = Client::where('day', $day)->get();
-        }
-
-
-        foreach($clients as $key => $client) {
-            $final_orders[$key]['client'] = $client->name;
-            $final_orders[$key]['email'] = $client->email;
-            $final_orders[$key]['phone'] = $client->phone;
-            $final_orders[$key]['ic'] = $client->ic;
-            $final_orders[$key]['dic'] = $client->dic;
-            $final_orders[$key]['address'] = $client->street." ".$client->street_number.", ".$client->city." ".$client->zip;
-            $final_orders[$key]['note'] = $client->note;
-
-            $orders = Order::where('client_id', $client->id)->get();
-            if($orders) {
-                foreach($orders as $key2 => $order) {
-                    $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
-                    $final_orders[$key]['orders'][$key2]['note'] = $order->note;
-
-                    $order_items = OrderItem::where('order_id', $order->id)->get();
-                    foreach($order_items as $key3 => $item) {
-                        if($item->quantity > 0) {
-                            $product = Product::where('id', $item->item_id)->first();
-                            $final_orders[$key]['orders'][$key2]['items'][$key3]['product'] = $product->name;
-                            $final_orders[$key]['orders'][$key2]['items'][$key3]['price_per_kg'] = $item->price;
-                            $final_orders[$key]['orders'][$key2]['items'][$key3]['quantity'] = $item->quantity;
-                            $final_orders[$key]['orders'][$key2]['items'][$key3]['full_price'] = $item->quantity * $item->price;
-                            $final_orders[$key]['orders'][$key2]['items'][$key3]['price_vat'] = ($item->quantity * $item->price) * 1.15;
-                        }
-                    }
-                }
-            }
-        }
-     
-        return $final_orders;
-    }
+    
 
 
     public function exportDayOrders($day) {
 
-        
-        $final_orders = $this->getDayOrders($day);
+        $order = new Order();
+        $final_orders = $order->getDayOrders($day);
 
         $data = [
             'day' => $day,
@@ -405,7 +366,10 @@ class OrderController extends Controller
     }
 
     public function createDayBills($day) {
-        $final_orders = $this->getDayOrders($day);
+
+
+        $order = new Order();
+        $final_orders = $order->getDayOrders($day);
 
     
 
@@ -417,4 +381,35 @@ class OrderController extends Controller
 
         return $pdf->stream("dodaci_list_".time().".pdf");
     }
+
+    public function exportCustomBill(Request $request) {
+
+        $order = new Order();
+        $final_orders = $order->getDayOrders($request->export_day_select, $request->export_date_select);
+       
+        $data = [
+            'final_orders' => $final_orders,
+        ];
+        
+        $pdf = PDF::loadView('pdfs.DayBillPDF', $data);
+
+        return $pdf->stream("dodaci_list_".time().".pdf");
+    }
+
+    public function exportForDriver(Request $request) {
+        $order = new Order();
+        $final_orders = $order->getDayOrders($request->export_day_select, $request->export_date_select);
+       
+        $data = [
+            'final_orders' => $final_orders,
+            'day' => $request->export_day_select,
+            'date' => $request->export_date_select
+        ];
+        
+        $pdf = PDF::loadView('pdfs.DaySumPDF', $data);
+
+        return $pdf->stream("dodaci_list_".time().".pdf");
+
+    }
+
 }

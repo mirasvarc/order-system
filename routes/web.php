@@ -53,6 +53,8 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/{id}', [OrderController::class, 'show']);
     Route::get('/export/{day}', [OrderController::class, 'exportDayOrders']);
     Route::post('/export/custom', [OrderController::class, 'exportCustom'])->name('exportCustom');
+    Route::post('/export/custom/bill', [OrderController::class, 'exportCustomBill'])->name('exportCustomBill');
+    Route::post('/export/driver', [OrderController::class, 'exportForDriver'])->name('exportForDriver');
     Route::get('/item/edit/{id}', [OrderController::class, 'editItem']);
     Route::post('/item/edit/{id}', [OrderController::class, 'updateItem']);
     Route::get('/bill/{id}', [OrderController::class, 'createBill']);

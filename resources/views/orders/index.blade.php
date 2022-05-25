@@ -20,7 +20,7 @@
             <div class="col-12">
                 <br>
                 <p>
-                    Export objednávek:&nbsp;
+                    <strong>Export objednávek:</strong>&nbsp;
                     <br class="br-mobile">
                     <a href="/orders/export/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí ({{$orders_count['monday']}})</a>
                     <a href="/orders/export/{{$day = 'Úterý'}}" class="btn btn-export">Úterý ({{$orders_count['tuesday']}})</a>
@@ -30,8 +30,7 @@
                     <a href="/orders/export/{{$day = 'Vše'}}" class="btn btn-export">Vše ({{$orders_count['all']}})</a>
                 </p>
                 <p>
-                    Detailní export:&nbsp;
-                    <br>
+                    <strong>Detailní export:</strong>&nbsp;
                     <br>
                     <form action="{{route('exportCustom')}}" method="POST">
                         @csrf
@@ -56,7 +55,31 @@
                     </form>
                 </p>
                 <br>
-                <p>Export dodacích listů:&nbsp;
+                <p>
+                    <strong>Denní export pro řidiče:</strong>&nbsp;
+                    <br>
+                    <form action="{{route('exportForDriver')}}" method="POST">
+                        @csrf
+                        <label for="export_day_select">Den:</label>
+                        <select name="export_day_select">
+                            <option value=""></option>
+                            <option value="Pondělí">Pondělí</option>
+                            <option value="Úterý">Úterý</option>
+                            <option value="Středa">Středa</option>
+                            <option value="Čtvrtek">Čtvrtek</option>
+                            <option value="Pátek">Pátek</option>
+                            <option value="Vše">Vše</option>
+                        </select>
+                        &nbsp;
+                        <label for="export_date_select">od:</label>
+                        <input type="date" name="export_date_select">
+                        &nbsp;
+                       
+                        <input type="submit" class="btn btn-success" value="Exportovat">
+                    </form>
+                </p>
+                <br>
+                <p><strong>Export dodacích listů:</strong>&nbsp;
                     <br class="br-mobile">
                     <a href="/orders/export/bill/{{$day = 'Pondělí'}}" class="btn btn-export">Pondělí ({{$orders_count['monday']}})</a>
                     <a href="/orders/export/bill/{{$day = 'Úterý'}}" class="btn btn-export">Úterý ({{$orders_count['tuesday']}})</a>
@@ -64,6 +87,30 @@
                     <a href="/orders/export/bill/{{$day = 'Čtvrtek'}}" class="btn btn-export">Čtvrtek ({{$orders_count['thursday']}})</a>
                     <a href="/orders/export/bill/{{$day = 'Pátek'}}" class="btn btn-export">Pátek ({{$orders_count['friday']}})</a>
                     <a href="/orders/export/bill/{{$day = 'Vše'}}" class="btn btn-export">Vše ({{$orders_count['all']}})</a>
+                </p>
+                <br>
+                <p>
+                    <strong>Dodací listy - detailní export:</strong>&nbsp;
+                    <br>
+                    <form action="{{route('exportCustomBill')}}" method="POST">
+                        @csrf
+                        <label for="export_day_select">Den:</label>
+                        <select name="export_day_select">
+                            <option value=""></option>
+                            <option value="Pondělí">Pondělí</option>
+                            <option value="Úterý">Úterý</option>
+                            <option value="Středa">Středa</option>
+                            <option value="Čtvrtek">Čtvrtek</option>
+                            <option value="Pátek">Pátek</option>
+                            <option value="Vše">Vše</option>
+                        </select>
+                        &nbsp;
+                        <label for="export_date_select">datum:</label>
+                        <input type="date" name="export_date_select">
+                        &nbsp;
+                        
+                        <input type="submit" class="btn btn-success" value="Exportovat">
+                    </form>
                 </p>
                 <br>
                 <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
