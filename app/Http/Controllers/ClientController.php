@@ -11,6 +11,7 @@ use PDF;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
 
+use function Symfony\Component\String\b;
 
 class ClientController extends Controller
 {
@@ -63,7 +64,11 @@ class ClientController extends Controller
     {
         $client = new Client();
         $client->name = $request->name;
-        $client->email = $request->email;
+        if(isset($request->email) && $request->email != "") {
+            $client->email = $request->email;
+        } else {
+            $client->email = "";
+        }
         $client->phone = $request->phone;
         $client->street = $request->street;
         $client->street_number = $request->street_number;
