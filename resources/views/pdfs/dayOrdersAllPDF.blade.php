@@ -73,16 +73,18 @@
                             <td style="font-weight:bold;">Množství</td>
                             <td style="font-weight:bold;">Celková cena</td>
                         </tr>
-                        @foreach ($order['items'] as $item)
-                            @if($item['quantity'] > 0)
-                            <tr>
-                                <td>{{$item['product']}}</td>
-                                <td>{{$item['price_per_kg']}} Kč</td>
-                                <td>{{$item['quantity']}} Kg</td>
-                                <td>{{$item['full_price']}} Kč</td>
-                            </tr>
-                            @endif
-                        @endforeach
+                        @if(isset($order['items'])) {
+                            @foreach ($order['items'] as $item)
+                                @if($item['quantity'] > 0)
+                                <tr>
+                                    <td>{{$item['product']}}</td>
+                                    <td>{{$item['price_per_kg']}} Kč</td>
+                                    <td>{{$item['quantity']}} Kg</td>
+                                    <td>{{$item['full_price']}} Kč</td>
+                                </tr>
+                                @endif
+                            @endforeach
+                        @endif
                     </table>
                 @endforeach
             @endif

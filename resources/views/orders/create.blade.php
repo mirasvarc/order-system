@@ -20,13 +20,13 @@
 
                             <div class="form-group mt-3 ml-5 mr-5">
                                 <h3>Klient</h3>
-                                <select name="clients" class="form-control">
+                                <select name="clients" class="form-control js-example-basic-single">
                                     @foreach ($clients as $client)
                                         <option value="{{$client->id}}">{{$client->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            {{--<div class="form-group mt-3 ml-5 mr-5">
+                            <div class="form-group mt-3 ml-5 mr-5">
                                 <label for="day">Den závozu</label>
                                 <select type="text" name="day" class="form-control">
                                     <option value=""></option>
@@ -36,7 +36,7 @@
                                     <option value="Čtvrtek">Čtvrtek</option>
                                     <option value="Pátek">Pátek</option>
                                 </select>
-                            </div>--}}
+                            </div>
                             <div class="form-group mt-3 ml-5 mr-5">
                                 <label for="note">Poznámka</label>
                                 <textarea name="note" class="form-control" rows="10"></textarea>
@@ -60,7 +60,7 @@
                                         {{$product->name}}
                                     </div>
                                     <div class="product-price">
-                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" step="0.1" value="{{$product->price}}">&nbsp; Kč
+                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" step="0.1" value="0">&nbsp; Kč
                                     </div>
                                     <div class="product-count">
                                         <input type="number" name="product[{{$product->id}}]" id="product-count-input" value="0" min="0">&nbsp; Kg
@@ -91,6 +91,11 @@
             $('.count-plus').on('click', function() {
                 var curr_val = parseInt($(this).prev('#product-count-input').val());
                 $(this).prev('#product-count-input').attr('value', curr_val + 1);
+            });
+
+
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
             });
         });
 

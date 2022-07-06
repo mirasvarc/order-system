@@ -28,6 +28,14 @@
                     <td>Cena objednávky:</td>
                     <td>{{$order->full_price}} Kč</td>
                 </tr>
+                <tr>
+                    <td>Den závozu:</td>
+                    <td>{{$order->day}}</td>
+                </tr>
+                <tr>
+                    <td>Poznámka:</td>
+                    <td>{{$order->note}}</td>
+                </tr>
             </table>
             <br>
             <br>

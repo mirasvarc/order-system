@@ -161,7 +161,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
                     {data: 'full_price', name: 'full_price'},
-                    {data: 'client_day', name: 'client_day'},
+                    {data: 'day', name: 'day'},
                     {data: 'date', name: 'date'},
                     {
                         data: 'action',

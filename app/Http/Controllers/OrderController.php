@@ -108,7 +108,13 @@ class OrderController extends Controller
         $order->client_id = $request->clients;
         $order->full_price = null;
         $order->note = $request->note;
-        $order->day = $client->day;
+        
+        if(isset($request->day) && $request->day != "") {
+            $order->day = $request->day;
+        } else {
+            $order->day = $client->day;
+        }
+       
         $order->date = $request->date;
         $order->save();
 

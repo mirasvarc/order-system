@@ -73,7 +73,7 @@
                         $price = 0;
                     @endphp
 
-                    @if(isset($order))
+                    @if(isset($order['items']))
                         @foreach($order['items'] as $item)
                             <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
                                 <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['quantity']}}</td>
