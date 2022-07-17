@@ -30,7 +30,7 @@
                     <tr>
                         <td>
                             <h1>DODACÍ LIST</h1>
-                            <p>Datum vystavení: {{date('d.m.Y')}}</p>
+                            <p>Datum vystavení: {{date('d.m.Y' ,strtotime($order['date']))}}</p>
 
                         </td>
                     </tr>

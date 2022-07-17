@@ -43,7 +43,7 @@ class Order extends Model
 
         foreach($clients as $key => $client) {
             if(Order::where('client_id', $client->id)->where('day', $day)->first() || $day == 'Vše') { // check if client has any order for given day
-            
+                
                 $final_orders[$key]['client'] = $client->name;
                 $final_orders[$key]['email'] = $client->email;
                 $final_orders[$key]['phone'] = $client->phone;
@@ -64,6 +64,7 @@ class Order extends Model
                     foreach($orders as $key2 => $order) {
                         $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
                         $final_orders[$key]['orders'][$key2]['note'] = $order->note;
+                        $final_orders[$key]['orders'][$key2]['date'] = $order->date;
 
                         $order_items = OrderItem::where('order_id', $order->id)->get();
                         foreach($order_items as $key3 => $item) {
@@ -81,9 +82,9 @@ class Order extends Model
                 }
             }
         }
-          
+ 
         return $final_orders;
-
+        
     }
 
 

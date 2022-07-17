@@ -210,6 +210,19 @@
   min-width: 70px;
 }
 
+.add-product-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.add-product-input-wrapper input {
+  max-width: 80%;
+}
+.add-product-input-wrapper p {
+  width: 20%;
+  text-align: center;
+}
+
 * {
   font-family: "Roboto", sans-serif;
 }
@@ -1345,6 +1358,10 @@ select {
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .text-red-600 {
   --tw-text-opacity: 1;

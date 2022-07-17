@@ -57,8 +57,10 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::post('/export/driver', [OrderController::class, 'exportForDriver'])->name('exportForDriver');
     Route::get('/item/edit/{id}', [OrderController::class, 'editItem']);
     Route::post('/item/edit/{id}', [OrderController::class, 'updateItem']);
+    Route::get('/item/delete/{id}', [OrderController::class, 'deleteItem']);
     Route::get('/bill/{id}', [OrderController::class, 'createBill']);
     Route::get('/export/bill/{day}', [OrderController::class, 'createDayBills']);
+    Route::post('/order/addItem', [OrderController::class, 'addProductToOrder'])->name('addProductToOrder');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

@@ -63,7 +63,11 @@
                                         <input class="price-input" type="number" name="product_price[{{$product->id}}]" step="0.1" value="0">&nbsp; Kč
                                     </div>
                                     <div class="product-count">
-                                        <input type="number" name="product[{{$product->id}}]" id="product-count-input" value="0" min="0">&nbsp; Kg
+                                        @if($product->name == "Borůvky")
+                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" step="0.1" value="0" min="0">&nbsp; Kg
+                                        @else
+                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" value="0" min="0">&nbsp; Kg
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach

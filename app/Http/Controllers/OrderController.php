@@ -157,7 +157,9 @@ class OrderController extends Controller
                                   ->whereColumn('id', 'order_items.item_id')
                                 ])->where('order_id', $order->id)->get();
 
-        return view('orders.detail')->with(['order' => $order, 'order_items' => $order_items]);
+        $products = Product::get();
+
+        return view('orders.detail')->with(['order' => $order, 'order_items' => $order_items, 'all_products' => $products]);
     }
 
     /**
@@ -416,6 +418,40 @@ class OrderController extends Controller
 
         return $pdf->stream("dodaci_list_".time().".pdf");
 
+    }
+    
+
+    public function addProductToOrder(Request $request) {
+
+        $client = Client::where('name', $request->client)->first();
+
+        $order_item = new OrderItem();
+        $order_item->order_id = $request->order_id;
+        $order_item->client_id = $client->id;
+        $order_item->item_id = $request->product;
+        $order_item->quantity = $request->quantity;
+        $order_item->price = $request->price;
+        $order_item->unit = "kg";
+        $order_item->save();
+
+        $order = Order::find($request->order_id);
+        $full_price = $order->full_price + (floatval($request->quantity * $request->price));
+        $order->full_price = $full_price;
+        $order->save();
+
+        return redirect()->back();
+
+    }
+
+    public function deleteItem($id) {
+        $item = OrderItem::find($id);
+        $item_id = $item->order_id;
+    
+        $item->delete();
+
+        $this->calculateOrderPrice($item_id);
+
+        return redirect()->back();
     }
 
 }
