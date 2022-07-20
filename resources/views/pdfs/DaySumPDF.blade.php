@@ -35,6 +35,18 @@
                     <td style="min-width:350px;">{{$client['address']}}</td>
                     <td style="min-width:250px;">{{$client['phone']}}</td>
                 </tr>
+                @foreach($client['orders'] as $order)
+                    {{$order_note = $order['note']}}
+                @endforeach 
+                @if(isset($order_note))
+                <tr style="border-bottom:1px solid grey">
+                    <td style="min-width:150px;">Poznámka:</td>
+                    <td style="min-width:350px;">
+                           {{$order_note}}
+                    </td>
+                    <td></td>
+                </tr>
+                @endif
             </table>
         @endif 
     @endforeach
@@ -46,6 +58,7 @@
             'brambory_m' => 0,
             'brambory_l' => 0,
             'brambory_v' => 0,
+            'brambory_c' => 0,
             'cibule' => 0,
             'cesnek' => 0,
             'boruvky' => 0,
@@ -76,8 +89,12 @@
                                 @break
                             @case(6)
                                 @php $items['brambory_l'] += $item['quantity'] @endphp
+                                @break
                             @case(7)
                                 @php $items['brambory_v'] += $item['quantity'] @endphp
+                                @break
+                            @case(8)
+                                @php $items['brambory_c'] += $item['quantity'] @endphp
                                 @break
                             @default
                                 
@@ -116,6 +133,13 @@
             <td>Brambory vařené:</td>
             <td>&nbsp;</td>
             <td>{{$items['brambory_v']}} Kg</td>
+        </tr>
+        @endif
+        @if($items['brambory_c'] > 0)
+        <tr>
+            <td>Brambory červené:</td>
+            <td>&nbsp;</td>
+            <td>{{$items['brambory_c']}} Kg</td>
         </tr>
         @endif
         @if($items['cibule'] > 0)

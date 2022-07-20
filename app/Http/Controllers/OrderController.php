@@ -407,11 +407,13 @@ class OrderController extends Controller
     public function exportForDriver(Request $request) {
         $order = new Order();
         $final_orders = $order->getDayOrders($request->export_day_select, $request->export_date_select);
-       
+
+        $orders = Order::where('date', $request->export_date_select)->get();
+        
         $data = [
             'final_orders' => $final_orders,
             'day' => $request->export_day_select,
-            'date' => $request->export_date_select
+            'date' => $request->export_date_select,
         ];
         
         $pdf = PDF::loadView('pdfs.DaySumPDF', $data);
