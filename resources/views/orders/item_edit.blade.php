@@ -27,11 +27,11 @@
                             <div class="product-card product-edit-card">
                                 <div class="product-price">
                                     <div class="label">Cena</div>
-                                    <input class="price-input" class="form-control" type="number" name="price" step="0.1" value="{{$item->price}}">&nbsp; Kč
+                                    <input class="price-input" class="form-control" type="number" name="price" step="0.1" value="{{$item->price}}">&nbsp; Kč / Eur
                                 </div>
                                 <div class="product-count">
                                     <div class="label">Počet</div>
-                                    <input type="number" class="price-input" name="quantity" value="{{$item->quantity}}">&nbsp; Kg
+                                    <input type="number" class="price-input" name="quantity" step="0.1" value="{{$item->quantity}}">&nbsp; Kg
                                 </div>
                             </div>
                         </div>

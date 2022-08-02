@@ -121,18 +121,22 @@ class OrderController extends Controller
 
         $price = 0;
 
-        foreach($request->product as $key => $product) {
-            //dd(intval($request->product_price[$key]));
-            $order_item = new OrderItem();
-            $order_item->order_id = $order->id;
-            $order_item->client_id = $request->clients;
-            $order_item->item_id = $key;
-            $order_item->quantity = $product;
-            $order_item->price = floatval($request->product_price[$key]);
-            $order_item->unit = "kg";
-            $order_item->save();
 
-            $price += $product * floatval($request->product_price[$key]);
+        foreach($request->product as $key => $product) {
+            if($product > 0 && $product != null) {
+                //dd(intval($request->product_price[$key]));
+                $order_item = new OrderItem();
+                $order_item->order_id = $order->id;
+                $order_item->client_id = $request->clients;
+                $order_item->item_id = $key;
+                $order_item->quantity = $product;
+                $order_item->price = floatval($request->product_price[$key]);
+                $order_item->unit = "kg";
+                $order_item->save();
+
+                $price += $product * floatval($request->product_price[$key]);
+            }
+            
         }
 
         $order = Order::where('id', $order->id)->first();
