@@ -33,6 +33,15 @@
                                     <option value="Pátek" {{ $order->day == 'Pátek' ? 'selected' : '' }}>Pátek</option>
                                 </select>
                             </div>
+                        
+                            <div class="form-group mt-3 ml-5 mr-5 mb-2">
+                                <label for="currency">Měna</label>
+                                <select type="text" name="currency" class="form-control">
+                                    <option value="CZK" {{ $order->currency == 'CZK' ? 'selected' : '' }}>České koruny</option>
+                                    <option value="EUR" {{ $order->currency == 'EUR' ? 'selected' : '' }}>Eura</option>
+                                </select>
+                            </div> 
+                
                             <div class="form-group mt-3 ml-5 mr-5 mb-2">
                                 <label for="date">Datum</label>
                                 <input type="date" class="form-control" name="date" value="{{$order->date}}">

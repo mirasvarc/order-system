@@ -63,6 +63,7 @@ class Order extends Model
                 if($orders) {
                     foreach($orders as $key2 => $order) {
                         $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
+                        $final_orders[$key]['orders'][$key2]['currency'] = $order->currency;
                         $final_orders[$key]['orders'][$key2]['note'] = $order->note;
                         $final_orders[$key]['orders'][$key2]['date'] = $order->date;
 

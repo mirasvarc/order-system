@@ -107,6 +107,7 @@ class OrderController extends Controller
         $order = new Order();
         $order->client_id = $request->clients;
         $order->full_price = null;
+        $order->currency = $request->currency;
         $order->note = $request->note;
         
         if(isset($request->day) && $request->day != "") {
@@ -200,6 +201,7 @@ class OrderController extends Controller
         $order->note = $request->note;
         $order->day = $client->day;
         $order->date = $request->date;
+        $order->currency = $request->currency;
         $order->save();
 
         return redirect('/orders/'.$id.'?add_success');
@@ -299,6 +301,7 @@ class OrderController extends Controller
             if($orders) {
                 foreach($orders as $key2 => $order) {
                     $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
+                    $final_orders[$key]['orders'][$key2]['currency'] = $order->currency;
                     $final_orders[$key]['orders'][$key2]['note'] = $order->note;
 
                     $order_items = OrderItem::where('order_id', $order->id)->get();

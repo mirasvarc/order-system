@@ -45,6 +45,14 @@
                                 <label for="date">Datum</label>
                                 <input type="date" class="form-control" name="date">
                             </div>
+
+                            <div class="form-group mt-3 ml-5 mr-5 mb-2">
+                                <label for="currency">Měna</label>
+                                <select type="text" name="currency" class="form-control">
+                                    <option value="CZK">České koruny</option>
+                                    <option value="EUR">Eura</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 

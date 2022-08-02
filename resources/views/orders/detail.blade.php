@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>Cena objednávky:</td>
-                    <td>{{$order->full_price}} Kč</td>
+                    <td>{{$order->full_price}} {{$order->currency == 'CZK' ? 'Kč' : '€'}}</td>
                 </tr>
                 <tr>
                     <td>Den závozu:</td>
@@ -54,9 +54,9 @@
                     @if($item->quantity > 0)
                     <tr>
                         <td>{{$item->product}}</td>
-                        <td>{{$item->price}} Kč/{{$item->unit}}</td>
+                        <td>{{$item->price}} {{$order->currency == 'CZK' ? 'Kč' : '€'}}/{{$item->unit}}</td>
                         <td>{{$item->quantity}} {{$item->unit}}</td>
-                        <td>{{$item->quantity * $item->price}} Kč</td>
+                        <td>{{$item->quantity * $item->price}} {{$order->currency == 'CZK' ? 'Kč' : '€'}}</td>
                         <td><a href="item/edit/{{$item->id}}" class="text-success">Upravit</a></td>
                         <td><a href="item/delete/{{$item->id}}" class="text-danger">Odstranit</a></td>
                     </tr>
@@ -97,7 +97,7 @@
                         <br>
                         <div class="form-group add-product-input-wrapper">
                             <input class="price-input form-control" type="number" name="price" step="0.1" value="0">
-                            <p>&nbsp; Kč</p>
+                            <p>&nbsp; {{$order->currency == 'CZK' ? 'Kč' : '€'}}</p>
                         </div>
                         <br>
                         <div class="form-group add-product-input-wrapper">

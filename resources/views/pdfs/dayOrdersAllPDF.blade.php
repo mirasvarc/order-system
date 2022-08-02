@@ -59,7 +59,7 @@
                     <table>
                         <tr>
                             <td>Celková cena objednávky:</td>
-                            <td>{{$order['price']}} Kč</td>
+                            <td>{{$order['price']}} {{$order['currency'] == 'CZK' ? 'Kč' : '€'}}</td>
                         </tr>
                         <tr>
                             <td>Poznámka k objednávce:</td>
@@ -78,9 +78,9 @@
                                 @if($item['quantity'] > 0)
                                 <tr>
                                     <td>{{$item['product']}}</td>
-                                    <td>{{$item['price_per_kg']}} Kč</td>
+                                    <td>{{$item['price_per_kg']}} {{$order['currency'] == 'CZK' ? 'Kč' : '€'}}</td>
                                     <td>{{$item['quantity']}} Kg</td>
-                                    <td>{{$item['full_price']}} Kč</td>
+                                    <td>{{$item['full_price']}} {{$order['currency'] == 'CZK' ? 'Kč' : '€'}}</td>
                                 </tr>
                                 @endif
                             @endforeach
