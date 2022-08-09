@@ -173,7 +173,7 @@
     @if(!empty($final_orders_2))
     @php $items = []; @endphp
     <h1>Přehled pro {{$final_orders_2[0]['order']['date']}}</h1>
-    <br><br>
+
     <h3>Adresy:</h3>
 
     @foreach($final_orders_2 as $key => $order)
