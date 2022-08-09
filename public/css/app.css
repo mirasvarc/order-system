@@ -288,6 +288,23 @@ body {
   margin-bottom: 50px;
 }
 
+.orders-container {
+  margin-bottom: 50px;
+}
+.orders-container .order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #888888;
+}
+.orders-container .order-row .car-select {
+  width: 150px;
+}
+.orders-container .order-row .car-select option {
+  padding: 5px;
+}
+
 #admin {
   margin-left: 15%;
   width: 85%;

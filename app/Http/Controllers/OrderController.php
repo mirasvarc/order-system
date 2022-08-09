@@ -405,7 +405,7 @@ class OrderController extends Controller
         $data = [
             'final_orders' => $final_orders,
         ];
-        
+      
         $pdf = PDF::loadView('pdfs.DayBillPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");
@@ -422,7 +422,7 @@ class OrderController extends Controller
             'day' => $request->export_day_select,
             'date' => $request->export_date_select,
         ];
-        
+       
         $pdf = PDF::loadView('pdfs.DaySumPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");
@@ -462,5 +462,44 @@ class OrderController extends Controller
 
         return redirect()->back();
     }
+
+    public function showCarSelect(Request $request) {
+        $order = new Order();
+        
+        $orders = $order->getOrdersByDate($request->export_date_select);
+        
+        return view('orders.car_select', compact('orders'));
+    }
+
+    public function createBillWithSelection(Request $request) {
+        $orders[1] = [];
+        $orders[2] = [];
+       
+        foreach($request->order as $key => $order) {
+            if($order == "1") {
+                $orders[1][] = $key;
+            } else if($order == "2") {
+                $orders[2][] = $key;
+            }
+        }
+        
+        $tmp = new Order();
+        $final_orders = $tmp->getDayOrdersWithSelection($orders);
+
+        if(!isset($final_orders[2])) {
+            $final_orders[2] = [];
+        }
+
+        $data = [
+            'final_orders_1' => $final_orders[1],
+            'final_orders_2' => $final_orders[2]
+        ];
+
+      
+        $pdf = PDF::loadView('pdfs.DaySumSelectPDF', $data);
+
+        return $pdf->stream("dodaci_list_".time().".pdf");
+    }
+    
 
 }

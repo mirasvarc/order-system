@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Client;
 use App\Models\OrderItem;
 use App\Models\Product;
+use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,11 +39,9 @@ class Order extends Model
           //  $clients = Client::where('day', $day)->get();
        // }
 
-            
-        
 
         foreach($clients as $key => $client) {
-            if(Order::where('client_id', $client->id)->where('day', $day)->first() || $day == 'Vše') { // check if client has any order for given day
+            if(Order::where('client_id', $client->id)->first()) { // check if client has any order for given day
                 $final_orders[$key]['client_id'] = $client->id;
                 $final_orders[$key]['client'] = $client->name;
                 $final_orders[$key]['email'] = $client->email;
@@ -79,6 +78,68 @@ class Order extends Model
                                 $final_orders[$key]['orders'][$key2]['items'][$key3]['price_vat'] = ($item->quantity * $item->price) * 1.15; // calculate price with tax
                             }
                         }
+                    }
+                }
+            }
+        }
+       
+        return $final_orders;
+        
+    }
+
+
+    public function getOrdersByDate($date) {
+        $orders = DB::select(
+            DB::raw(
+                'SELECT o.id, c.name, c.street, c.street_number, c.city, c.zip FROM orders o LEFT JOIN client c ON (o.client_id = c.id) WHERE date = "'.$date.'"'
+            )
+        );
+        
+        return $orders;
+    }
+
+
+    /**
+     * Get all clients with their orders for given day and date for export
+     * @param day selected day
+     * @param date selected date
+     * @return final_orders array of clients with their orders
+     */
+    public function getDayOrdersWithSelection($orders) {
+        
+        $final_orders = [];
+        
+        $clients = Client::get();
+        
+        foreach($orders as $keyX => $order_group) {
+            
+            foreach($order_group as $key => $o) {
+                $order = Order::where('id', $o)->first();
+                $client = Client::where('id', $order->client_id)->first();
+            
+                $final_orders[$keyX][$key]['client_id'] = $client->id;
+                $final_orders[$keyX][$key]['client'] = $client->name;
+                $final_orders[$keyX][$key]['email'] = $client->email;
+                $final_orders[$keyX][$key]['phone'] = $client->phone;
+                $final_orders[$keyX][$key]['ic'] = $client->ic;
+                $final_orders[$keyX][$key]['dic'] = $client->dic;
+                $final_orders[$keyX][$key]['address'] = $client->street." ".$client->street_number.", ".$client->city." ".$client->zip;
+                $final_orders[$keyX][$key]['note'] = $client->note;
+                $final_orders[$keyX][$key]['order']['price'] = $order->full_price;
+                $final_orders[$keyX][$key]['order']['currency'] = $order->currency;
+                $final_orders[$keyX][$key]['order']['note'] = $order->note;
+                $final_orders[$keyX][$key]['order']['date'] = $order->date;
+
+                $order_items = OrderItem::where('order_id', $order->id)->get();
+                foreach($order_items as $key3 => $item) {
+                    if($item->quantity > 0) { // add item only if its quantity is bigger than 0
+                        $product = Product::where('id', $item->item_id)->first();
+                        $final_orders[$keyX][$key]['order']['items'][$key3]['product_id'] = $product->id;
+                        $final_orders[$keyX][$key]['order']['items'][$key3]['product'] = $product->name;
+                        $final_orders[$keyX][$key]['order']['items'][$key3]['price_per_kg'] = $item->price;
+                        $final_orders[$keyX][$key]['order']['items'][$key3]['quantity'] = $item->quantity;
+                        $final_orders[$keyX][$key]['order']['items'][$key3]['full_price'] = $item->quantity * $item->price;
+                        $final_orders[$keyX][$key]['order']['items'][$key3]['price_vat'] = ($item->quantity * $item->price) * 1.15; // calculate price with tax
                     }
                 }
             }

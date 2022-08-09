@@ -1,0 +1,20 @@
+.orders-container {
+
+    margin-bottom: 50px;
+
+    .order-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+        border-bottom: 1px solid #888888;
+
+        .car-select {
+            width: 150px;
+            
+            option {
+                padding: 5px;
+            }
+        }
+    }
+}

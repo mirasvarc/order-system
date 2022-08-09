@@ -61,6 +61,8 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/bill/{id}', [OrderController::class, 'createBill']);
     Route::get('/export/bill/{day}', [OrderController::class, 'createDayBills']);
     Route::post('/order/addItem', [OrderController::class, 'addProductToOrder'])->name('addProductToOrder');
+    Route::post('/export/bill/with-selection', [OrderController::class, 'showCarSelect'])->name('showCarSelect');
+    Route::post('/export/bill/with-selection/send', [OrderController::class, 'createBillWithSelection'])->name('createBillWithSelection');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

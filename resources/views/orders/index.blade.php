@@ -58,7 +58,7 @@
                 <p>
                     <strong>Denní export pro řidiče:</strong>&nbsp;
                     <br>
-                    <form action="{{route('exportForDriver')}}" method="POST">
+                    <form id="exportCustomBill" action="{{route('exportForDriver')}}" method="POST">
                         @csrf
                         <label for="export_day_select">Den:</label>
                         <select name="export_day_select">
@@ -76,6 +76,7 @@
                         &nbsp;
                        
                         <input type="submit" class="btn btn-success" value="Exportovat">
+                        <input type="button" id="export-with-selection" class="btn btn-success" value="Exportovat s rozdělením">
                     </form>
                 </p>
                 <br>
@@ -110,6 +111,8 @@
                         &nbsp;
                         
                         <input type="submit" class="btn btn-success" value="Exportovat">
+                        
+
                     </form>
                 </p>
                 <br>
@@ -149,9 +152,17 @@
     @endif
 
 
+
+    <script>
+        $('#export-with-selection').click(function(e) {
+            e.preventDefault();
+            $('#exportCustomBill').attr('action', '/orders/export/bill/with-selection');
+            $('#exportCustomBill').submit();
+        });
+    </script>
+
     <script type="text/javascript">
         $(function () {
-            console.log("test")
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
                 serverSide: true,
