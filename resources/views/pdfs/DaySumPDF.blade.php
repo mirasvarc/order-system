@@ -24,7 +24,7 @@
     </style>
 
     <h1>Přehled pro {{$day}} {{$date}}</h1>
-    <br><br>
+    
     <h3>Adresy:</h3>
 
     @foreach($final_orders as $key => $client)
