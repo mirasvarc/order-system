@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,12 @@ Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::post('/order/addItem', [OrderController::class, 'addProductToOrder'])->name('addProductToOrder');
     Route::post('/export/bill/with-selection', [OrderController::class, 'showCarSelect'])->name('showCarSelect');
     Route::post('/export/bill/with-selection/send', [OrderController::class, 'createBillWithSelection'])->name('createBillWithSelection');
+});
+
+Route::prefix('stats')->middleware('admin')->group(function() {
+    Route::get('/', [StatsController::class, 'index']);
+    Route::get('/getOrdersPriceByDays', [StatsController::class, 'getOrdersPriceByDays'])->name('stats.getOrdersPriceByDays');
+    Route::get('/getOrdersItemsByDays', [StatsController::class, 'getSoldItemsByDays'])->name('stats.getItemsPriceByDays');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

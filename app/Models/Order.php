@@ -150,4 +150,25 @@ class Order extends Model
     }
 
 
+    public function getOrdersPriceByDays() {
+        $orders = DB::select(
+            DB::raw(
+                'SELECT date, SUM(full_price) as total FROM orders GROUP BY date'
+            )
+        );
+
+        return $orders;
+    }
+
+    public function getSoldItemsByDays() {
+        $orders = DB::select(
+            DB::raw(
+                'SELECT p.name, oi.quantity, o.date, SUM(o.full_price) as total  FROM orders o LEFT JOIN order_items oi ON (o.id = oi.order_id) LEFT JOIN products p ON (oi.item_id = p.id) GROUP BY o.date, p.name, oi.quantity'
+            )
+        );
+
+        return $orders;
+    }
+
+
 }
