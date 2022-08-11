@@ -481,10 +481,7 @@ class OrderController extends Controller
         $orders[3] = [];
         $orders[4] = [];
 
-        $final_orders[1] = [];
-        $final_orders[2] = [];
-        $final_orders[3] = [];        
-        $final_orders[4] = [];
+        
        
         foreach($request->order as $key => $order) {
             if($order == "1") {
@@ -497,12 +494,26 @@ class OrderController extends Controller
                 $orders[4][] = $key;
             }
         }
-        
+       
+       
+    
+       
         $tmp = new Order();
         $final_orders = $tmp->getDayOrdersWithSelection($orders);
 
-        
-    
+        if(!isset($final_orders[1])) {
+            $final_orders[1] = [];
+        }
+        if(!isset($final_orders[2])) {
+            $final_orders[2] = [];
+        }
+        if(!isset($final_orders[3])) {
+            $final_orders[3] = [];
+        }
+        if(!isset($final_orders[4])) {
+            $final_orders[4] = [];
+        }
+
         $data = [
             'final_orders_1' => $final_orders[1],
             'final_orders_2' => $final_orders[2],

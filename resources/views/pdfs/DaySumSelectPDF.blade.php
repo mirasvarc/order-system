@@ -23,6 +23,8 @@
         
     </style>
 
+    @if(!empty($final_orders_1))
+
     <h1>Přehled pro {{$final_orders_1[0]['order']['date']}}</h1>
   
     <h3>Adresy:</h3>
@@ -161,6 +163,8 @@
         </tr>
         @endif
     </table>
+    @endif
+
 
     @if(!empty($final_orders_2))
 

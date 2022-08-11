@@ -110,7 +110,7 @@ class Order extends Model
         $final_orders = [];
         
         $clients = Client::get();
-        
+   
         foreach($orders as $keyX => $order_group) {
             
             foreach($order_group as $key => $o) {
