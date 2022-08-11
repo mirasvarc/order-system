@@ -68,3 +68,15 @@
 .btn-not_verified {
     background-color: $color-delete !important;
 }
+
+.changelog-block {
+    border: 1px solid grey;
+    width: 100%;
+    min-height: 500px;
+    padding: 15px;
+
+    .title {
+        font-size: 22px;
+        font-weight: bold;
+    }
+}

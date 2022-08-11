@@ -57,59 +57,103 @@
                     </tr>
                 </table>
                 <br>
-                <table style="border: 1px solid black;border-collapse: collapse;">
-                    <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
-                        <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Množství</td>
-                        <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Název zboží</td>
-                        <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena za jednot. bez DPH</td>
-                        <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena celkem bez DPH</td>
-                        <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">DPH %</td>
-                        <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">DPH {{$order['currency'] == 'CZK' ? 'Kč' : '€'}}</td>
-                        <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena celkem s DPH</td>
-                    </tr>
-
-                    @php 
-                        $count = 0; 
-                        $price = 0;
-                    @endphp
-
-                    @if(isset($order['items']))
-                        @foreach($order['items'] as $item)
-                            <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
-                                <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['quantity']}}</td>
-                                <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;">{{$item['product']}}</td>
-                                <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg']}}</td>
-                                <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg'] * $item['quantity']}}</td>
-                                <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">15</td>
-                                <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ (($item['price_per_kg'] * $item['quantity'])*1.15)-($item['price_per_kg'] * $item['quantity']) }}</td>
-                                <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ ($item['price_per_kg'] * $item['quantity'])*1.15 }}</td>
-                            </tr>
-                            @php 
-                                $count++; 
-                                $price += $item['price_per_kg'] * $item['quantity'];
-                            @endphp
-                        @endforeach
-                    @endif
-                            
-                    @for($i = 0; $i <= (7 - $count); $i++)
+                @if($order['currency'] == 'CZK')
+                    <table style="border: 1px solid black;border-collapse: collapse;">
                         <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
-                            <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
-                            <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;"></td>
-                            <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
-                            <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
-                            <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
-                            <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
-                            <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                            <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Množství</td>
+                            <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Název zboží</td>
+                            <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena za jednot. bez DPH</td>
+                            <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena celkem bez DPH</td>
+                            <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">DPH %</td>
+                            <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">DPH {{$order['currency'] == 'CZK' ? 'Kč' : '€'}}</td>
+                            <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena celkem s DPH</td>
                         </tr>
-                    @endfor
-                    <tr style="border: 0px solid black;border-collapse: collapse;font-size:12px;" >
-                        <td colspan="3" style="width: 375px;height:60px;border: 0px solid black;border-collapse: collapse;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
-                        <td style="width: 65px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $price }}</td>
-                        <td style="width: 45px;height:60px;padding:0px 5px;text-align:center;border: 0px solid black;border-collapse: collapse;"></td>
-                        <td style="width: 60px;height:60px;padding:0px 5px;text-align:center;border: 0px solid black;border-collapse: collapse;"></td>
-                        <td style="width: 75px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $price * 1.15}}</td>
-                    </tr>
-                </table>
+
+                        @php 
+                            $count = 0; 
+                            $price = 0;
+                        @endphp
+
+                        @if(isset($order['items']))
+                            @foreach($order['items'] as $item)
+                                <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
+                                    <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['quantity']}}</td>
+                                    <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;">{{$item['product']}}</td>
+                                    <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg']}}</td>
+                                    <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg'] * $item['quantity']}}</td>
+                                    <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">15</td>
+                                    <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ (($item['price_per_kg'] * $item['quantity'])*1.15)-($item['price_per_kg'] * $item['quantity']) }}</td>
+                                    <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ ($item['price_per_kg'] * $item['quantity'])*1.15 }}</td>
+                                </tr>
+                                @php 
+                                    $count++; 
+                                    $price += $item['price_per_kg'] * $item['quantity'];
+                                @endphp
+                            @endforeach
+                        @endif
+                                
+                        @for($i = 0; $i <= (7 - $count); $i++)
+                            <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
+                                <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;"></td>
+                                <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 45px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 60px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 75px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                            </tr>
+                        @endfor
+                        <tr style="border: 0px solid black;border-collapse: collapse;font-size:12px;" >
+                            <td colspan="3" style="width: 375px;height:60px;border: 0px solid black;border-collapse: collapse;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
+                            <td style="width: 65px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $price }}</td>
+                            <td style="width: 45px;height:60px;padding:0px 5px;text-align:center;border: 0px solid black;border-collapse: collapse;"></td>
+                            <td style="width: 60px;height:60px;padding:0px 5px;text-align:center;border: 0px solid black;border-collapse: collapse;"></td>
+                            <td style="width: 75px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $price * 1.15}}</td>
+                        </tr>
+                    </table>
+                @else
+                    <table style="border: 1px solid black;border-collapse: collapse;">
+                        <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
+                            <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Množství</td>
+                            <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Název zboží</td>
+                            <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena za jednotku</td>
+                            <td style="width: 85px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;font-size:12px;">Cena celkem</td>
+                        </tr>
+
+                        @php 
+                            $count = 0; 
+                            $price = 0;
+                        @endphp
+
+                        @if(isset($order['items']))
+                            @foreach($order['items'] as $item)
+                                <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
+                                    <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['quantity']}}</td>
+                                    <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;">{{$item['product']}}</td>
+                                    <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg']}}</td>
+                                    <td style="width: 85px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{$item['price_per_kg'] * $item['quantity']}}</td>
+                                </tr>
+                                @php 
+                                    $count++; 
+                                    $price += $item['price_per_kg'] * $item['quantity'];
+                                @endphp
+                            @endforeach
+                        @endif
+                                
+                        @for($i = 0; $i <= (7 - $count); $i++)
+                            <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
+                                <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;"></td>
+                                <td style="width: 65px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                                <td style="width: 85px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
+                            </tr>
+                        @endfor
+                        <tr style="border: 0px solid black;border-collapse: collapse;font-size:12px;" >
+                            <td colspan="3" style="width: 600px;height:60px;border: 0px solid black;border-collapse: collapse;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
+                            <td style="width: 85px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $price }}</td>
+                        </tr>
+                    </table>
+                @endif
 
                 <table style="border: 1px solid black;border-collapse: collapse;margin-top:15px;">
                     <tr style="border: 1px solid black;border-collapse: collapse;">

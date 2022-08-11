@@ -121,7 +121,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Klient</th>
-                        <th scope="col">Cena (Kč)</th>
+                        <th scope="col">Cena (Kč / EUR)</th>
                         <th scope="col">Den závozu</th>
                         <th scope="col">Datum objednávky</th>
                         <th scope="col"></th>

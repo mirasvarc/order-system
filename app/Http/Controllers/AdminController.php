@@ -53,4 +53,8 @@ class AdminController extends Controller
         return true;
         
     }
+
+    public function showChangelog() {
+        return view('admin.changelog');
+    }
 }

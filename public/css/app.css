@@ -365,6 +365,17 @@ body {
 .btn-not_verified {
   background-color: #eb5959 !important;
 }
+
+.changelog-block {
+  border: 1px solid grey;
+  width: 100%;
+  min-height: 500px;
+  padding: 15px;
+}
+.changelog-block .title {
+  font-size: 22px;
+  font-weight: bold;
+}
 /*
 ! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
 *//*

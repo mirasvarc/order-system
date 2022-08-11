@@ -203,7 +203,11 @@ class OrderController extends Controller
         $client = Client::where('id', $order->client_id)->first();
 
         $order->note = $request->note;
-        $order->day = $client->day;
+        if(isset($request->day) && $request->day != "") {
+            $order->day = $request->day;
+        } else {
+            $order->day = $client->day;
+        }
         $order->date = $request->date;
         $order->currency = $request->currency;
         $order->save();
@@ -474,25 +478,36 @@ class OrderController extends Controller
     public function createBillWithSelection(Request $request) {
         $orders[1] = [];
         $orders[2] = [];
+        $orders[3] = [];
+        $orders[4] = [];
+
+        $final_orders[1] = [];
+        $final_orders[2] = [];
+        $final_orders[3] = [];        
+        $final_orders[4] = [];
        
         foreach($request->order as $key => $order) {
             if($order == "1") {
                 $orders[1][] = $key;
             } else if($order == "2") {
                 $orders[2][] = $key;
+            } else if($order == "3") {
+                $orders[3][] = $key;
+            } else if($order == "4") {
+                $orders[4][] = $key;
             }
         }
         
         $tmp = new Order();
         $final_orders = $tmp->getDayOrdersWithSelection($orders);
 
-        if(!isset($final_orders[2])) {
-            $final_orders[2] = [];
-        }
-
+        
+    
         $data = [
             'final_orders_1' => $final_orders[1],
-            'final_orders_2' => $final_orders[2]
+            'final_orders_2' => $final_orders[2],
+            'final_orders_3' => $final_orders[3],
+            'final_orders_4' => $final_orders[4]
         ];
 
       

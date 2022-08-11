@@ -41,10 +41,13 @@
             <div class="admin-nav">
                 <div class="admin-menu-items">
                     <a href="/"><i class="fa-solid fa-arrow-left"></i>&nbsp;Zpět</a>
+                    <br>
                     <div class="admin-menu-item">
                         <a href="/admin/users">Uživatelé</a>
                     </div>
-                    <div class="admin-menu-item">Nastavení</div>
+                    <div class="admin-menu-item">
+                        <a href="/admin/changelog">Changelog</a>
+                    </div>
                 </div>
             </div>
 
