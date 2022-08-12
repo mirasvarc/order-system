@@ -129,7 +129,7 @@
             <tr style="border: 0px solid black;border-collapse: collapse;font-size:12px;" >
                 <td colspan="3" style="width: 600px;height:60px;border: 0px solid black;border-collapse: collapse;padding:0px 5px;text-align:left;font-size:20px;">Placeno: <strong>FAKTUROU - HOTOVĚ</strong></td>
         
-                <td style="width: 85px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $full_price['price'] * 1.15}}</td>
+                <td style="width: 85px;height:60px;border: 2px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;">{{ $full_price['price']}}</td>
             </tr>
         </table>    
     @endif
