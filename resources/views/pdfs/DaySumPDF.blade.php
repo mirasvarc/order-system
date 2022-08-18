@@ -42,7 +42,7 @@
                 <tr style="border-bottom:1px solid grey">
                     <td style="min-width:150px;">Poznámka:</td>
                     <td style="min-width:350px;">
-                           {{$order_note}}
+                           {{$order_note}}, {{$client['note']}}
                     </td>
                     <td></td>
                 </tr>

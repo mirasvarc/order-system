@@ -65,6 +65,7 @@ class Order extends Model
                         $final_orders[$key]['orders'][$key2]['currency'] = $order->currency;
                         $final_orders[$key]['orders'][$key2]['note'] = $order->note;
                         $final_orders[$key]['orders'][$key2]['date'] = $order->date;
+                        $final_orders[$key]['note2'] = $order->note;
 
                         $order_items = OrderItem::where('order_id', $order->id)->get();
                         foreach($order_items as $key3 => $item) {
@@ -116,7 +117,9 @@ class Order extends Model
             foreach($order_group as $key => $o) {
                 $order = Order::where('id', $o)->first();
                 $client = Client::where('id', $order->client_id)->first();
-            
+                $tmp_note = null;
+                $tmp_note = $tmp_note . $order->note;
+                
                 $final_orders[$keyX][$key]['client_id'] = $client->id;
                 $final_orders[$keyX][$key]['client'] = $client->name;
                 $final_orders[$keyX][$key]['email'] = $client->email;
@@ -127,7 +130,8 @@ class Order extends Model
                 $final_orders[$keyX][$key]['note'] = $client->note;
                 $final_orders[$keyX][$key]['order']['price'] = $order->full_price;
                 $final_orders[$keyX][$key]['order']['currency'] = $order->currency;
-                $final_orders[$keyX][$key]['order']['note'] = $order->note;
+                $final_orders[$keyX][$key]['order']['note'] = $client->note;
+                $final_orders[$keyX][$key]['note2'] = $tmp_note;
                 $final_orders[$keyX][$key]['order']['date'] = $order->date;
 
                 $order_items = OrderItem::where('order_id', $order->id)->get();
@@ -144,7 +148,7 @@ class Order extends Model
                 }
             }
         }
-       
+
         return $final_orders;
         
     }
