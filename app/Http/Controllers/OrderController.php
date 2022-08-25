@@ -47,7 +47,7 @@ class OrderController extends Controller
                             ->whereColumn('id', 'orders.client_id')
                         ])->addSelect(['client_day' => Client::select('day')
                             ->whereColumn('id', 'orders.client_id')
-                        ])->get();
+                        ])->orderBy('id', 'DESC')->get();
         
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -267,6 +267,21 @@ class OrderController extends Controller
     }
 
     
+    public function showExports() {
+        $orders = Order::All();
+
+        $orders_count = [
+            "monday" => Order::where('day', 'Pondělí')->count(),
+            "tuesday" => Order::where('day', 'Úterý')->count(),
+            "wednesday" => Order::where('day', 'Středa')->count(),
+            "thursday" => Order::where('day', 'Čtvrtek')->count(),
+            "friday" => Order::where('day', 'Pátek')->count(),
+            "all" => Order::count(),
+        ];
+       
+
+        return view('orders.exports')->with(['orders' => $orders, 'orders_count' => $orders_count]);
+    }
 
 
     public function exportDayOrders($day) {

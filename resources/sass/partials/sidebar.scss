@@ -1,0 +1,38 @@
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(0%);
+    transition: transform 0.7s;
+}
+
+.sidemenu-close {
+    color: white;
+    font-size: 36px;
+    font-weight: 200;
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.dark:text-white {
+    color: white !important;
+}
+
+@media(min-width:991px) {
+    .sidemenu-close {
+        display: none;
+    }
+}
+
+@media(max-width:991px) {
+    .sidebar-container .main-ul {
+        margin-top: 50px;
+    }
+
+    .sidebar-hidden {
+        transform: translateX(-100%);
+        transition: transform 0.8s;
+    }
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,11 @@
         <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" />
+
+
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -34,19 +37,41 @@
         <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-
+        <script src="https://unpkg.com/flowbite@1.5.2/dist/flowbite.js"></script>
 
 
     </head>
     <body class="font-sans antialiased">
+        
+
+
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-
+            
+            @include('components.sidebar')
+     
             <main>
-                @yield('main')
+                <div class="main">
+                    <div class="navbar-res">
+                        <div class="open-sidebar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#fff" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+                                <line x1="3" y1="12" x2="21" y2="12" stroke="#fff"></line>
+                                <line x1="3" y1="6" x2="21" y2="6" stroke="#fff"></line>
+                                <line x1="3" y1="18" x2="21" y2="18" stroke="#fff"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    @yield('main')
+                </div>
+        
+                <script>
+                    $('.open-sidebar, .feather-menu').on('click', function() {
+                        console.log("test")
+                        $('.sidebar-container').removeClass('sidebar-hidden');
+                    });
+                </script>
+            
+               
             </main>
         </div>
     </body>

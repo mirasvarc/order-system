@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StatsController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ use App\Http\Controllers\StatsController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home')->middleware(['auth']);
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -44,6 +43,7 @@ Route::prefix('clients')->middleware(['auth'])->group(function () {
 
 Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/', [OrderController::class, 'index']);
+    Route::get('/exports', [OrderController::class, 'ShowExports']);
     Route::get('/add', [OrderController::class, 'create']);
     Route::post('/add', [OrderController::class, 'store']);
     Route::get('/edit/{id}', [OrderController::class, 'edit']);

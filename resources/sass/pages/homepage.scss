@@ -1,14 +1,12 @@
-.container {
-    @media(max-width:991px) {
-        margin: 20%;
-    }
-}
 
+.homepage-container {
+    margin-top: 100px;
+}
 
 .main-btn {
     background-color: white;
-    padding: 100px 0;
-    margin: 25% 65px 0;
+    padding: 15px 25px;
+    margin: 15px 0;
     font-size: 30px;
     border: 2px solid black;
 
@@ -42,4 +40,11 @@
             cursor: pointer;
         }
     }
+}
+
+
+.dashboard-block {
+    padding: 15px;
+    background-color: white;
+    margin-bottom: 10px;
 }

@@ -1,47 +1,44 @@
 @extends('layouts.app')
 
 @section('main')
+    
 
-    <div class="container">
-        <div class="row client-list-row">
-            <div class="col-12">
-                <div class="title">
-                    <h1><a href="/"><i class="fa fa-arrow-left"></a></i>&nbsp;Seznam klientů</h1>
-                    <a href="/clients/add" class="btn btn-success">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        &nbsp;Nový klient
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Jméno a Příjmení / Společnost</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">Den závozu</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {{--<tr>
-                          @foreach ($clients as $client)
-                            <th scope="row">{{$client->id}}</th>
-                            <td>{{$client->name}}</td>
-                            <td>{{$client->email}}</td>
-                            <td>{{$client->phone}}</td>
-                          @endforeach
-                      </tr>--}}
-                    </tbody>
-                  </table>
-            </div>
-        </div>
+    <div class="title">
+        <h1 class="title-h1">
+            Seznam klientů
+        </h1>
+        <a href="/clients/add" class="btn btn-success">
+            <i class="fa-solid fa-circle-plus"></i>
+            &nbsp;Nový klient
+        </a>
     </div>
+
+
+
+    <table class="table table-hover yajra-datatable clients-table display responsive nowrap" width="100%">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Jméno a Příjmení / Společnost</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Den závozu</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{--<tr>
+                @foreach ($clients as $client)
+                <th scope="row">{{$client->id}}</th>
+                <td>{{$client->name}}</td>
+                <td>{{$client->email}}</td>
+                <td>{{$client->phone}}</td>
+                @endforeach
+            </tr>--}}
+        </tbody>
+    </table>
+       
+
 
     @if(isset($_REQUEST['add_success']))
         <div class="alert alert-success alert-dismissible fade show client-add-alert" role="alert">

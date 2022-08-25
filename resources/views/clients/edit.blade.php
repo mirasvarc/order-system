@@ -6,7 +6,7 @@
         <div class="row client-list-row">
             <div class="col-12">
                 <div class="title">
-                    <h1><a href="/clients"><i class="fa fa-arrow-left"></a></i>&nbsp;Upravit klienta</h1>
+                    <h1><a href="/clients"><i class="fa fa-arrow-left"></a></i>&nbsp;&nbsp;Upravit klienta</h1>
                 </div>
             </div>
         </div>

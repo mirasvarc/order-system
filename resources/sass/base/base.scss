@@ -3,7 +3,7 @@
 }
 
 a {
-    color: black !important;
+    color: black;
     text-decoration: none !important;
 
     &:hover {
@@ -20,9 +20,58 @@ body {
     background-color: #e3e3e3  !important;
 }
 
+.shadow {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.7;
+    z-index: 2;
+    top: 0;
+}
+
+.bg-custom {
+    background-image: url('/images/login_bg.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btn-custom {
+    padding: 15px 30px !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 !important;
+    justify-content: center !important;
+}
+
 .btn-success {
     background-color: $color-primary !important;
     border: $color-primary !important;
+}
+
+.login-card {
+    z-index: 3;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-logo {
+    width: 300px;
+    margin-top: -50px;
+    margin-bottom: 50px;
+}
+
+@media(max-width: 991px) {
+    .login-card {
+        width: 90%;
+    }
+
+    .login-logo {
+        margin-top: 50px;
+    }
 }
 
 .login-title {
@@ -52,8 +101,65 @@ body {
     }
 }
 
-.login-logo {
-    width: 300px;
-    margin-top: -50px;
-    margin-bottom: 50px;
+
+.main {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    width: 100vw;
+    right: 0;
+}
+
+.open-sidebar {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+}
+
+@media(max-width:991px) {
+    .navbar-res {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 55px;
+        background-color: rgb(31, 41, 55);
+    }
+}
+
+@media(min-width: 991px) {
+    .main {
+        position: absolute;
+        height: 100vh;
+        top: 0;
+        width: calc(100vw - 16rem);
+        right: 0;
+    }
+
+    .open-sidebar {
+        display: none;
+    }
+
+    .plr-50 {
+        padding-left: 50px !important;
+        padding-right: 50px !important;
+    }
+
+}
+
+.page-title {
+    margin: 15px 15px;
+}
+
+.link-disabled {
+
+    span {
+        color: grey !important;
+    }
+    
+
+    &:hover {
+        background-color: transparent !important;
+        cursor: not-allowed !important;
+    }
 }

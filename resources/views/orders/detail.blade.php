@@ -4,13 +4,23 @@
 
 
 <div class="container client-detail-container">
-    <br>
-    <a href="/orders" class="client-detail-back">Zpět</a>
-    <br>
+    <div class="row client-list-row">
+        <div class="col-12">
+            <div class="order-detail-title">
+                <h1 class="title-h1 d-flex">
+                    <a href="/orders">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    </a>
+                    &nbsp;
+                    Detail objednávky č.{{$order->id}}
+                </h1>
+               <a href="edit/{{$order->id}}" class="btn btn-success">Upravit</a>
+            </div>
+        </div>
+    </div>
     <div class="row client-detail-row">
         <div class="col-12 client-detail-col">
-            <h2>Detail objednávky č.{{$order->id}} &nbsp; <a href="edit/{{$order->id}}" class="btn btn-success">Upravit</a></h2>
-            <br>
+           
             <table>
                 <tr>
                     <td>Číslo objednávky:</td>

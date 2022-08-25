@@ -2,11 +2,19 @@
 
 @section('main')
 
-    <div class="container">
+    <div class="container plr-50">
         <div class="row client-list-row">
             <div class="col-12">
-                <div class="title">
-                    <h1><a href="/orders"><i class="fa fa-arrow-left"></a></i>&nbsp;Vytvoření objednávky</h1>
+                <div class="page-title">
+                    <h1 class="title-h1 d-flex">
+                        <a href="/orders">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        </a>
+                        &nbsp;
+                        Vytvoření objednávky
+                    
+                    </h1>
+                    
                 </div>
             </div>
         </div>
