@@ -37,15 +37,15 @@
                     <td style="min-width:350px;">{{$order['address']}}</td>
                     <td style="min-width:250px;">{{$order['phone']}}</td>
                 </tr>
-                @if((isset($order['note']) || isset($order['note2'])) && ($order['note'] != null && $order['note2'] != null))
+                @if((isset($order['note']) || isset($order['note2'])))
                 <tr style="border-bottom:1px solid grey">
                     <td style="min-width:150px;">Poznámka:</td>
                     <td style="min-width:350px;">
-                        @if(isset($order['note']) && isset($order['note2']))
+                        @if((isset($order['note']) && $order['note'] != null) && (isset($order['note2']) && $order['note2'] != null))
                             {{$order['note']}}, {{$order['note2']}}
-                        @elseif(isset($order['note2']))
+                        @elseif(isset($order['note2']) && $order['note2'] != null)
                             {{$order['note2']}}
-                        @elseif(isset($order['note']))
+                        @elseif(isset($order['note']) && $order['note'] != null)
                            {{$order['note']}}
                         @endif
                     </td>
@@ -193,11 +193,11 @@
                     <tr style="border-bottom:1px solid grey">
                         <td style="min-width:150px;">Poznámka:</td>
                         <td style="min-width:350px;">
-                            @if(isset($order['note']) && isset($order['note2']))
+                            @if((isset($order['note']) && $order['note'] != null) && (isset($order['note2']) && $order['note2'] != null))
                                 {{$order['note']}}, {{$order['note2']}}
-                            @elseif(isset($order['note2']))
+                            @elseif(isset($order['note2']) && $order['note2'] != null)
                                 {{$order['note2']}}
-                            @elseif(isset($order['note']))
+                            @elseif(isset($order['note']) && $order['note'] != null)
                             {{$order['note']}}
                             @endif
                         </td>
@@ -348,11 +348,11 @@
                     <tr style="border-bottom:1px solid grey">
                         <td style="min-width:150px;">Poznámka:</td>
                         <td style="min-width:350px;">
-                            @if(isset($order['note']) && isset($order['note2']))
+                            @if((isset($order['note']) && $order['note'] != null) && (isset($order['note2']) && $order['note2'] != null))
                                 {{$order['note']}}, {{$order['note2']}}
-                            @elseif(isset($order['note2']))
+                            @elseif(isset($order['note2']) && $order['note2'] != null)
                                 {{$order['note2']}}
-                            @elseif(isset($order['note']))
+                            @elseif(isset($order['note']) && $order['note'] != null)
                             {{$order['note']}}
                             @endif
                         </td>
@@ -498,11 +498,11 @@
                     <tr style="border-bottom:1px solid grey">
                         <td style="min-width:150px;">Poznámka:</td>
                         <td style="min-width:350px;">
-                            @if(isset($order['note']) && isset($order['note2']))
+                            @if((isset($order['note']) && $order['note'] != null) && (isset($order['note2']) && $order['note2'] != null))
                                 {{$order['note']}}, {{$order['note2']}}
-                            @elseif(isset($order['note2']))
+                            @elseif(isset($order['note2']) && $order['note2'] != null)
                                 {{$order['note2']}}
-                            @elseif(isset($order['note']))
+                            @elseif(isset($order['note']) && $order['note'] != null)
                             {{$order['note']}}
                             @endif
                         </td>
