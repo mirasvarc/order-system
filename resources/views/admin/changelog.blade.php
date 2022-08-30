@@ -1,13 +1,26 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('main')
 
     <div class="container">
-        <div class="row">
+        <div class="row pt-3 pb-3 pl-3 pr-3">
             <div class="col-md-12">
                 <h1>Changelog:</h1>
                 <div class="changelog-block">
-
+                    <p class="title">V 2.0.1 (30.8.2022)</p>
+                    <p class="text">
+                        - Přesměrování na seznam objednávek po přihlášení<br>
+                        - rozdělení grafů pro CZK a EUR<br>
+                        - zvětšení polí ve  vytváření objednávky<br>
+                        - přidání patičky <br>
+                    </p>
+                    <br>
+                    <p class="title">V 2.0.0 (25.8.2022)</p>
+                    <p class="text">
+                        - Kompletní redesign, změna rozložení<br>
+                        - responsivní menu<br>
+                    </p>
+                    <br>
                     <p class="title">V 1.3.1 (11.8.2022)</p>
                     <p class="text">
                         - Přidání 4 aut do výběru pro řidiče<br>

@@ -163,3 +163,15 @@ body {
         cursor: not-allowed !important;
     }
 }
+
+
+.footer {
+    position: fixed;
+    bottom: 2px;
+    right: 5px;
+
+    p {
+        font-size: 11px;
+        color: gray;
+    }
+}

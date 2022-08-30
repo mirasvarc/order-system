@@ -76,9 +76,9 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/users', [AdminController::class, 'showUsersList']);
     Route::post('/change-role', [AdminController::class, 'setRole']);
-    Route::get('/changelog', [AdminController::class, 'showChangelog']);
+    
 });
 
-
+Route::get('/changelog', [AdminController::class, 'showChangelog']);
 
 require __DIR__.'/auth.php';

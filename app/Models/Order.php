@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\OrderItem;
 use App\Models\Product;
 use DB;
+use Response;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -155,11 +156,23 @@ class Order extends Model
 
 
     public function getOrdersPriceByDays() {
-        $orders = DB::select(
+        $orders_czk = DB::select(
             DB::raw(
-                'SELECT date, SUM(full_price) as total FROM orders GROUP BY date'
+                'SELECT date, SUM(full_price) as total FROM orders WHERE currency = "CZK" GROUP BY date'
             )
         );
+
+        $orders_eur = DB::select(
+            DB::raw(
+                'SELECT date, SUM(full_price) as total FROM orders WHERE currency = "EUR" GROUP BY date'
+            )
+        );
+        
+
+        $orders = [
+            $orders_czk,
+            $orders_eur,
+        ];
 
         return $orders;
     }

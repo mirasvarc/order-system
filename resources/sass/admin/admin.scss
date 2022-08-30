@@ -74,9 +74,12 @@
     width: 100%;
     min-height: 500px;
     padding: 15px;
+    background-color: white;
 
     .title {
         font-size: 22px;
         font-weight: bold;
+        padding: 0;
+        display: block;
     }
 }
