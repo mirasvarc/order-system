@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
 
 class StatsController extends Controller
 {
@@ -13,8 +15,19 @@ class StatsController extends Controller
         $order = new Order();
         $orders = $order->getOrdersPriceByDays();
 
-        
-        return view('stats.index', compact('orders'));
+        $order_item = new OrderItem();
+        $items_sold_this_month = $order_item->getItemsSoldThisMonth();
+        $items_sold_last_month = $order_item->getItemsSoldLastMonth();
+
+        $product = new Product();
+        $products = $product->getProducts();
+
+        $items_sold = [];
+        foreach($products as $product) {
+            $items_sold[$product->id] = $order_item->getItemsSoldByMonths($product->id);
+        }
+        //dd($items_sold_last_month);
+        return view('stats.index', ['orders' => $orders, 'items_sold' => $items_sold, 'items_sold_this_month' => $items_sold_this_month, 'items_sold_last_month' => $items_sold_last_month]);
     }
 
 

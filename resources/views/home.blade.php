@@ -5,13 +5,12 @@
     <div class="container plr-50 pt-5">
       
         <div class="row">
-            <div class="col-3">
+            {{--<div class="col-3">
                 <div class="dashboard-block">
                     <h1 class="title-h1">Celkové tržby:</h1>
                     <p class="main-p p-3 text-center">{{number_format($total, 2, '.', ',')}} Kč</p>
-                    {{--<p>Z toho {{number_format($total_czk, 2, '.', ',')}} Kč a {{number_format($total_eur, 2, '.', ',')}} Eur</p>--}}
                 </div>
-            </div>
+            </div>--}}
             <div class="col-3">
                 <div class="dashboard-block">
                     <h1 class="title-h1">Počet objednávek:</h1>
