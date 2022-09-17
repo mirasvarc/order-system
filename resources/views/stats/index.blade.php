@@ -60,6 +60,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="dashboard-block">
+                    <h1 class="title-h1">
+                        Prodeje podle data:
+                    </h1>
+                    <div class="mt-2">
+                        od: <input type="date" name="date_from" id="date_from">
+                        do: <input type="date" name="date_to" id="date_to">
+                    </div>
+                    <br>
+                    <div id="itemsByDate">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
@@ -83,6 +98,63 @@
 
 
 <script>
+
+    $('#date_from').on('change', function() {
+        var date_from = $(this).val()
+        var date_to = $('#date_to').val()
+        if(date_from != "" && date_to != "") {
+            $.ajax('/stats/getSoldItemsByDate', {
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    date_from: date_from,
+                    date_to: date_to
+                },
+                success: function(res) {
+                    console.log(res)
+                    showItems(res)
+                }
+            });
+        }
+        
+    })
+
+    $('#date_to').on('change', function() {
+        var date_to = $(this).val()
+        var date_from = $('#date_from').val()
+        if(date_from != "" && date_to != "") {
+            $.ajax('/stats/getSoldItemsByDate', {
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    date_from: date_from,
+                    date_to: date_to
+                },
+                success: function(res) {
+                    console.log(res)
+                    showItems(res)
+                }
+            });
+        }
+    })
+    
+
+    function showItems(data) {
+        $('#itemsByDate').html('');
+        for(var i = 0; i < data.length; i++) {
+            $('#itemsByDate').append(
+                '<p class="d-flex justify-content-between">'+
+                    '<span>'+ data[i].name +':</span> '+
+                    '<span>'+ data[i].quantity + data[i].unit +'</span>'+
+                '</p>'
+            );
+        }
+        
+    }
 
 $(window).on('load', function() {
         $.ajax('/stats/getOrdersPriceByDays',{

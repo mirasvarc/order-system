@@ -7,6 +7,12 @@
             <div class="col-md-12">
                 <h1>Changelog:</h1>
                 <div class="changelog-block">
+                    <p class="title">V 2.1.0 (30.8.2022)</p>
+                    <p class="text">
+                        - Přidání statistik prodaných produktů<br>
+                        - možnost zobrazit prodané produkty pro vybrané období<br>
+                    </p>
+                    <br>
                     <p class="title">V 2.0.1 (30.8.2022)</p>
                     <p class="text">
                         - Přesměrování na seznam objednávek po přihlášení<br>

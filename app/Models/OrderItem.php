@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
 
 class OrderItem extends Model
 {
@@ -65,6 +66,25 @@ class OrderItem extends Model
                 AND MONTH(oi.created_at) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
                 GROUP BY oi.item_id
                 '
+            )
+        );
+
+        return $items;
+    }
+
+    public function getItemsSoldByDate($date_from, $date_to) {
+        
+        $date_from = Carbon::parse($date_from)->toDateTimeString();
+        $date_to = Carbon::parse($date_to)->toDatetimeString();
+        
+        $items = DB::select(
+            DB::raw(
+                'SELECT oi.client_id, oi.order_id, oi.item_id, SUM(oi.quantity) as quantity, SUM(oi.price) as price, oi.unit, oi.created_at, p.name
+                FROM order_items oi 
+                LEFT JOIN products p 
+                ON (oi.item_id = p.id) 
+                WHERE oi.created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'" 
+                GROUP BY oi.item_id'
             )
         );
 

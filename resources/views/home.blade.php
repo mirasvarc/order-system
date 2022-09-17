@@ -12,19 +12,19 @@
                 </div>
             </div>--}}
             <div class="col-3">
-                <div class="dashboard-block">
+                <div class="dashboard-block" style="min-height: unset;">
                     <h1 class="title-h1">Počet objednávek:</h1>
                     <p class="main-p p-3 text-center">{{$orders_count}}</p>
                 </div>
             </div>
             <div class="col-3">
-                <div class="dashboard-block">
+                <div class="dashboard-block" style="min-height: unset;">
                     <h1 class="title-h1">Počet zákazníků:</h1>
                     <p class="main-p p-3 text-center">{{$clients_count}}</p>
                 </div>
             </div>
             <div class="col-3">
-                <div class="dashboard-block">
+                <div class="dashboard-block" style="min-height: unset;">
                     <h1 class="title-h1">Počet produktů:</h1>
                     <p class="main-p p-3 text-center">{{$products_count}}</p>
                 </div>
