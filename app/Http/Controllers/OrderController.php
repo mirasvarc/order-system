@@ -536,7 +536,7 @@ class OrderController extends Controller
             'final_orders_4' => $final_orders[4]
         ];
 
-      
+        
         $pdf = PDF::loadView('pdfs.DaySumSelectPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");

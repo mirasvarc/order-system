@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Dodací list</title>
+</head>
+<body style="margin-top:-35px;">
+    <style>
+        *{ font-family: DejaVu Sans !important;}
+
+        h1 {
+            font-size: 22px;
+        }
+
+        p, td {
+            font-size:14px
+        }
+
+        .page_break { 
+            page-break-before: always; 
+        }
+        
+    </style>
+
+    @foreach($orders as $key => $order)
+        @if(!empty($order))
+            @if($key == 0)
+            <h1>Přehled pro {{$order[0]['order']['date']}}</h1>
+            
+            <h3>Adresy:</h3>
+            @endif
+
+            @foreach($order as $o)
+                @if(isset($o['order']))
+                    <table>
+                        <tr style="border-bottom:1px solid grey">
+                            <td style="min-width:150px;">{{$key+1}}) {{$o['client']}}</td>
+                            <td style="min-width:350px;">{{$o['address']}}</td>
+                            <td style="min-width:250px;">{{$o['phone']}}</td>
+                        </tr>
+
+                        @if((isset($o['note']) && $o['note'] != null) || (isset($o['note2']) && $o['note2'] != null))
+                            <tr style="border-bottom:1px solid grey">
+                                <td style="min-width:150px;">Poznámka:</td>
+                                <td style="min-width:350px;">
+                                    @if((isset($order['note']) && $order['note'] != null) && (isset($order['note2']) && $order['note2'] != null))
+                                        {{$order['note']}}, {{$order['note2']}}
+                                    @elseif(isset($order['note2']) && $order['note2'] != null)
+                                        {{$order['note2']}}
+                                    @elseif(isset($order['note']) && $order['note'] != null)
+                                    {{$order['note']}}
+                                    @endif
+                                </td>
+                                <td></td>
+                            </tr>
+                        @endif
+                @endif
+            @endforeach
+
+
+            @php
+                $items = [
+                    'brambory_k' => 0,
+                    'brambory_m' => 0,
+                    'brambory_l' => 0,
+                    'brambory_v' => 0,
+                    'brambory_c' => 0,
+                    'cibule' => 0,
+                    'cesnek' => 0,
+                    'boruvky' => 0,
+                ];
+            @endphp
+        
+            @foreach($order as $o)
+                @if(isset($o['order']))
+                    
+                    
+                    @foreach($o['order']['items'] as $item)
+                        
+                        @switch($item['product_id'])
+                            @case(1)
+                                @php $items['brambory_k'] += $item['quantity'] @endphp
+                                @break
+                            @case(2)
+                                @php $items['cibule'] += $item['quantity'] @endphp
+                                @break
+                            @case(3)
+                                @php $items['boruvky'] += $item['quantity'] @endphp
+                                @break
+                            @case(4)
+                                @php $items['cesnek'] += $item['quantity'] @endphp
+                                @break
+                            @case(5)
+                                @php $items['brambory_m'] += $item['quantity'] @endphp
+                                @break
+                            @case(6)
+                                @php $items['brambory_l'] += $item['quantity'] @endphp
+                                @break
+                            @case(7)
+                                @php $items['brambory_v'] += $item['quantity'] @endphp
+                                @break
+                            @case(8)
+                                @php $items['brambory_c'] += $item['quantity'] @endphp
+                                @break
+                            @default
+                                
+                        @endswitch
+                    @endforeach
+                    
+                
+                @endif
+            @endforeach
+
+        @endif
+    @endforeach
