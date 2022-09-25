@@ -224,7 +224,7 @@
                     '<span>'+ data[0][0].total +' Kč</span>'+
                 '</p>' +
                 '<p class="d-flex justify-content-between">'+
-                    '<span>Tržby CZK:</span> '+
+                    '<span>Tržby EUR:</span> '+
                     '<span>'+ data[1][0].total +' Eur</span>'+
                 '</p>'
             );
