@@ -75,6 +75,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="dashboard-block">
+                    <h1 class="title-h1">
+                        Tržby podle data:
+                    </h1>
+                    <div class="mt-2">
+                        od: <input type="date" name="date2_from" id="date2_from">
+                        do: <input type="date" name="date2_to" id="date2_to">
+                    </div>
+                    <br>
+                    <div id="salesByDate">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
@@ -141,6 +156,50 @@
             });
         }
     })
+
+
+    $('#date2_from').on('change', function() {
+        var date_from = $(this).val()
+        var date_to = $('#date2_to').val()
+        if(date_from != "" && date_to != "") {
+            $.ajax('/stats/getSalesByDate', {
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    date_from: date_from,
+                    date_to: date_to
+                },
+                success: function(res) {
+                    console.log(res)
+                    showSales(res);
+                }
+            });
+        }
+        
+    })
+
+    $('#date2_to').on('change', function() {
+        var date_to = $(this).val()
+        var date_from = $('#date2_from').val()
+        if(date_from != "" && date_to != "") {
+            $.ajax('/stats/getSalesByDate', {
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    date_from: date_from,
+                    date_to: date_to
+                },
+                success: function(res) {
+                    console.log(res);
+                    showSales(res);
+                }
+            });
+        }
+    })
     
 
     function showItems(data) {
@@ -153,6 +212,23 @@
                 '</p>'
             );
         }
+        
+    }
+
+    function showSales(data) {
+        $('#salesByDate').html('');
+        
+            $('#salesByDate').append(
+                '<p class="d-flex justify-content-between">'+
+                    '<span>Tržby CZK:</span> '+
+                    '<span>'+ data[0][0].total +' Kč</span>'+
+                '</p>' +
+                '<p class="d-flex justify-content-between">'+
+                    '<span>Tržby CZK:</span> '+
+                    '<span>'+ data[1][0].total +' Eur</span>'+
+                '</p>'
+            );
+        
         
     }
 

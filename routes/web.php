@@ -71,6 +71,8 @@ Route::prefix('stats')->middleware('admin')->group(function() {
     Route::get('/getOrdersPriceByDays', [StatsController::class, 'getOrdersPriceByDays'])->name('stats.getOrdersPriceByDays');
     Route::get('/getOrdersItemsByDays', [StatsController::class, 'getSoldItemsByDays'])->name('stats.getItemsPriceByDays');
     Route::post('/getSoldItemsByDate', [StatsController::class, 'getSoldItemsByDate'])->name('stats.getSoldItemsByDate');
+    Route::post('/getSalesByDate', [StatsController::class, 'getSalesByDate'])->name('stats.getSalesByDate');
+
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

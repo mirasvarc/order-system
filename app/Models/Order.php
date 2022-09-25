@@ -9,6 +9,7 @@ use DB;
 use Response;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -101,6 +102,8 @@ class Order extends Model
     }
 
 
+
+
     /**
      * Get all clients with their orders for given day and date for export
      * @param day selected day
@@ -184,6 +187,49 @@ class Order extends Model
             )
         );
 
+        return $orders;
+    }
+
+    public function getSalesByDate($date_from, $date_to) {
+        
+        $date_from = Carbon::parse($date_from)->toDateTimeString();
+        $date_to = Carbon::parse($date_to)->toDatetimeString();
+        
+
+        $orders_czk = DB::select(
+            DB::raw(
+                'SELECT SUM(full_price) as total 
+                FROM orders 
+                WHERE currency = "CZK" 
+                AND created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'"'
+            )
+        );
+
+        $orders_eur = DB::select(
+            DB::raw(
+                'SELECT SUM(full_price) as total 
+                FROM orders 
+                WHERE currency = "EUR" 
+                AND created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'"'
+            )
+        );
+
+      /*  $orders = DB::select(
+            DB::raw(
+                'SELECT oi.client_id, oi.order_id, oi.item_id, SUM(oi.quantity) as quantity, SUM(oi.price) as price, oi.unit, oi.created_at, p.name
+                FROM order_items oi 
+                LEFT JOIN products p 
+                ON (oi.item_id = p.id) 
+                WHERE oi.created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'" 
+                GROUP BY oi.item_id'
+            )
+        );*/
+
+        $orders = [
+            $orders_czk,
+            $orders_eur,
+        ];
+     
         return $orders;
     }
 

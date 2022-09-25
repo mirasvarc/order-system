@@ -49,4 +49,10 @@ class StatsController extends Controller
         $items_sold_date = $order_item->getItemsSoldByDate($request->date_from, $request->date_to);
         return $items_sold_date;
     }
+
+    public function getSalesByDate(Request $request) {
+        $order = new Order();
+        $sales_date = $order->getSalesByDate($request->date_from, $request->date_to);
+        return $sales_date;
+    }
 }
