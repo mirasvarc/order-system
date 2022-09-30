@@ -393,7 +393,7 @@ class OrderController extends Controller
             'order_items' => $order_items,
             'full_price' => $full_price
         ];
-
+        
         $pdf = PDF::loadView('pdfs.BillPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");

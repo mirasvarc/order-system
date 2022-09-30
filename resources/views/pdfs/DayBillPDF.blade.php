@@ -56,7 +56,11 @@
                         </td>
                     </tr>
                 </table>
+                @if(isset($order['note']) && $order['note'] != "")
+                <p>Poznámka: {{$order['note']}}</p>
+                @else
                 <br>
+                @endif
                 @if($order['currency'] == 'CZK')
                     <table style="border: 1px solid black;border-collapse: collapse;">
                         <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >

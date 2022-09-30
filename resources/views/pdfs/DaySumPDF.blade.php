@@ -31,18 +31,17 @@
         @if(isset($client['orders']))   
             <table>
                 <tr style="border-bottom:1px solid grey">
-                    <td style="min-width:150px;">{{$key+1}}) {{$client['client']}}</td>
-                    <td style="min-width:350px;">{{$client['address']}}</td>
-                    <td style="min-width:250px;">{{$client['phone']}}</td>
+                    <td style="width:350px;">{{$key+1}}) <strong>{{$client['client']}}</strong></td>
+                    <td style="width:350px;">{{$client['address']}}</td>
+                    {{--<td style="min-width:250px;">{{$client['phone']}}</td>--}}
                 </tr>
                 @foreach($client['orders'] as $order)
                     {{$order_note = $order['note']}}
                 @endforeach 
                 @if(isset($order_note))
                 <tr style="border-bottom:1px solid grey">
-                    <td style="min-width:150px;">Poznámka:</td>
-                    <td style="min-width:350px;">
-                           {{$order_note}}, {{$client['note']}}
+                    <td style="width:350px;">Poznámka:
+                           <span style="color:red;">{{$order_note}}, {{$client['note']}}</span>
                     </td>
                     <td></td>
                 </tr>
