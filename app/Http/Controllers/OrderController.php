@@ -416,6 +416,9 @@ class OrderController extends Controller
         return $pdf->stream("dodaci_list_".time().".pdf");
     }
 
+    /**
+     * Create custom bills for given date
+     */
     public function exportCustomBill(Request $request) {
 
         $order = new Order();
@@ -430,6 +433,9 @@ class OrderController extends Controller
         return $pdf->stream("dodaci_list_".time().".pdf");
     }
 
+    /**
+     * Create export with names, adresses and products for dirver without selection
+     */
     public function exportForDriver(Request $request) {
         $order = new Order();
         $final_orders = $order->getDayOrders($request->export_day_select, $request->export_date_select);
@@ -490,6 +496,9 @@ class OrderController extends Controller
         return view('orders.car_select', compact('orders'));
     }
 
+    /**
+     * Create export with names, adresses and products for dirver with selection
+     */
     public function createBillWithSelection(Request $request) {
         $orders[1] = [];
         $orders[2] = [];

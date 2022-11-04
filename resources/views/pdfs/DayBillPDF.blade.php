@@ -23,10 +23,15 @@
         
     </style>
 
+    @php
+        $bill_no = 1;
+    @endphp
+
     @foreach($final_orders as $client)
         @if(isset($client['orders']))
             @foreach($client['orders'] as $order)
                 <table>
+                    <h1 style="position: absolute;right:15px;top:-30px;">{{$bill_no}}</h1>
                     <tr>
                         <td>
                             <h1>DODACÍ LIST</h1>
@@ -175,6 +180,10 @@
                 @if(!$loop->last)
                     <div class="page_break"></div>
                 @endif
+
+                @php
+                    $bill_no++;
+                @endphp
             @endforeach 
         @endif 
     @endforeach

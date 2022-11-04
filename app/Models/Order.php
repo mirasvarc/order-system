@@ -102,8 +102,6 @@ class Order extends Model
     }
 
 
-
-
     /**
      * Get all clients with their orders for given day and date for export
      * @param day selected day
