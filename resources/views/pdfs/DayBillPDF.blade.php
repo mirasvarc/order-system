@@ -31,7 +31,6 @@
         @if(isset($client['orders']))
             @foreach($client['orders'] as $order)
                 <table>
-                    <h1 style="position: absolute;right:15px;top:-30px;">{{$bill_no}}</h1>
                     <tr>
                         <td>
                             <h1>DODACÍ LIST</h1>
