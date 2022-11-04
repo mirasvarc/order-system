@@ -32,7 +32,8 @@
             @foreach($client['orders'] as $order)
                 <table>
                     <tr>
-                        <td>
+                        <td style="position: relative;width:100%;">
+                            <h1 style="position: absolute;right:-480px;top:0px;">{{$bill_no}}</h1>
                             <h1>DODACÍ LIST</h1>
                             <p>Datum vystavení: {{date('d.m.Y' ,strtotime($order['date']))}}</p>
 
