@@ -447,7 +447,7 @@ class OrderController extends Controller
             'day' => $request->export_day_select,
             'date' => $request->export_date_select,
         ];
-       
+        
         $pdf = PDF::loadView('pdfs.DaySumPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");

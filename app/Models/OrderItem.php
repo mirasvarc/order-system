@@ -58,7 +58,7 @@ class OrderItem extends Model
 
         $items = DB::select(
             DB::raw(
-                'SELECT oi.client_id, oi.order_id, oi.item_id, SUM(oi.quantity) as quantity, SUM(oi.price) as price, oi.unit, oi.created_at, p.name
+                'SELECT SUM(oi.quantity) as quantity, SUM(oi.price) as price, oi.unit, oi.created_at, p.name
                 FROM order_items oi 
                 LEFT JOIN products p 
                 ON (oi.item_id = p.id) 
@@ -76,10 +76,10 @@ class OrderItem extends Model
         
         $date_from = Carbon::parse($date_from)->toDateTimeString();
         $date_to = Carbon::parse($date_to)->toDatetimeString();
-        
+     
         $items = DB::select(
             DB::raw(
-                'SELECT oi.client_id, oi.order_id, oi.item_id, SUM(oi.quantity) as quantity, SUM(oi.price) as price, oi.unit, oi.created_at, p.name
+                'SELECT SUM(oi.quantity) as quantity, SUM(oi.price) as price, oi.unit, oi.created_at, p.name
                 FROM order_items oi 
                 LEFT JOIN products p 
                 ON (oi.item_id = p.id) 

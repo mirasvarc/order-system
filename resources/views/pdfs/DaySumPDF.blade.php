@@ -45,6 +45,13 @@
                     </td>
                     <td></td>
                 </tr>
+                @else
+                <tr style="border-bottom:1px solid grey">
+                    <td style="width:350px;">Poznámka:
+                           <span style="color:red;">{{$client['note']}}</span>
+                    </td>
+                    <td></td>
+                </tr>
                 @endif
             </table>
         @endif 

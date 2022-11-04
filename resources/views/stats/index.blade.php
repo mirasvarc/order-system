@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+           {{-- <div class="col-4">
                 <div class="dashboard-block">
                     <h1 class="title-h1">Tento měsíc:</h1>
                     <br>
@@ -59,7 +59,7 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <div class="col-4">
                 <div class="dashboard-block">
                     <h1 class="title-h1">
