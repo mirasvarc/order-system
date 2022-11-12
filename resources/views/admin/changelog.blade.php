@@ -7,6 +7,13 @@
             <div class="col-md-12">
                 <h1>Changelog:</h1>
                 <div class="changelog-block">
+                    <p class="title">V 2.3.0 (12.11.2022)</p>
+                    <p class="text">
+                        - Přidání dalších 2 aut do exportu s rozdělením<br>
+                        - Přidání čísla objednávky na dodací listy<br>
+                        - Skrytí statitstik prodejů za aktuální a předchozí měsíc z důvodu chyby ve výpočtu
+                    </p>
+                    <br>
                     <p class="title">V 2.2.0 (30.9.2022)</p>
                     <p class="text">
                         - Zpřehlednění PDF Přehledu pro řidiče (s rozdělením i bez)<br>
