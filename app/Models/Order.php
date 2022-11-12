@@ -26,6 +26,10 @@ class Order extends Model
         return Order::get();
     }
 
+    public function orderItems() {
+        return $this->hasMany(OrderItem::class);
+    }
+
     /**
      * Get all clients with their orders for given day and date for export
      * @param day selected day
@@ -64,6 +68,7 @@ class Order extends Model
                 if($orders) {
                     foreach($orders as $key2 => $order) {
                         $final_orders[$key]['orders'][$key2]['price'] = $order->full_price;
+                        $final_orders[$key]['orders'][$key2]['id'] = $order->id;
                         $final_orders[$key]['orders'][$key2]['currency'] = $order->currency;
                         $final_orders[$key]['orders'][$key2]['note'] = $order->note;
                         $final_orders[$key]['orders'][$key2]['date'] = $order->date;

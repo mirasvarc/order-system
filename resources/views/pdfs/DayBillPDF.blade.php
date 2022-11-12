@@ -23,9 +23,6 @@
         
     </style>
 
-    @php
-        $bill_no = 1;
-    @endphp
 
     @foreach($final_orders as $client)
         @if(isset($client['orders']))
@@ -33,7 +30,7 @@
                 <table>
                     <tr>
                         <td style="position: relative;width:100%;">
-                            <h1 style="position: absolute;right:-480px;top:0px;">{{$bill_no}}</h1>
+                            <h1 style="position: absolute;right:-480px;top:0px;">{{$order['id']}}</h1>
                             <h1>DODACÍ LIST</h1>
                             <p>Datum vystavení: {{date('d.m.Y' ,strtotime($order['date']))}}</p>
 
@@ -181,9 +178,7 @@
                     <div class="page_break"></div>
                 @endif
 
-                @php
-                    $bill_no++;
-                @endphp
+      
             @endforeach 
         @endif 
     @endforeach

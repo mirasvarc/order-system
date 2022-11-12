@@ -504,6 +504,8 @@ class OrderController extends Controller
         $orders[2] = [];
         $orders[3] = [];
         $orders[4] = [];
+        $orders[5] = [];
+        $orders[6] = [];
 
         
        
@@ -516,6 +518,10 @@ class OrderController extends Controller
                 $orders[3][] = $key;
             } else if($order == "4") {
                 $orders[4][] = $key;
+            } else if($order == "5") {
+                $orders[5][] = $key;
+            } else if($order == "6") {
+                $orders[6][] = $key;
             }
         }
        
@@ -537,12 +543,20 @@ class OrderController extends Controller
         if(!isset($final_orders[4])) {
             $final_orders[4] = [];
         }
+        if(!isset($final_orders[5])) {
+            $final_orders[5] = [];
+        }
+        if(!isset($final_orders[6])) {
+            $final_orders[6] = [];
+        }
 
         $data = [
             'final_orders_1' => $final_orders[1],
             'final_orders_2' => $final_orders[2],
             'final_orders_3' => $final_orders[3],
-            'final_orders_4' => $final_orders[4]
+            'final_orders_4' => $final_orders[4],
+            'final_orders_5' => $final_orders[5],
+            'final_orders_6' => $final_orders[6]
         ];
 
         

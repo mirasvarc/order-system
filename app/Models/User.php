@@ -69,4 +69,9 @@ class User extends Authenticatable
         return $this->roles()->where('role', 'sales')->exists();
     }
 
+
+    public function orders() {
+        return $this->hasMany('App\Models\Order');
+    }
+
 }
