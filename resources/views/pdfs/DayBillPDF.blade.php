@@ -98,7 +98,7 @@
                             @endforeach
                         @endif
                                 
-                        @for($i = 0; $i <= (7 - $count); $i++)
+                        @for($i = 0; $i <= (6 - $count); $i++)
                             <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
                                 <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
                                 <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;"></td>
@@ -146,7 +146,7 @@
                             @endforeach
                         @endif
                                 
-                        @for($i = 0; $i <= (7 - $count); $i++)
+                        @for($i = 0; $i <= (6 - $count); $i++)
                             <tr style="border: 1px solid black;border-collapse: collapse;font-size:12px;" >
                                 <td style="width: 50px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;text-align:center;"></td>
                                 <td style="width: 250px;height:60px;border: 1px solid black;border-collapse: collapse;padding:0px 5px;"></td>
