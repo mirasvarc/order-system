@@ -10,7 +10,7 @@ use App\Models\Product;
 
 class StatsController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
 
         $order = new Order();
         $orders = $order->getOrdersPriceByDays();
@@ -22,12 +22,18 @@ class StatsController extends Controller
         $product = new Product();
         $products = $product->getProducts();
 
+        if($request->session()->get('admin')) {
+            $admin = true;
+        } else {
+            $admin = false;
+        }
+
         $items_sold = [];
         foreach($products as $product) {
             $items_sold[$product->id] = $order_item->getItemsSoldByMonths($product->id);
         }
         //dd($items_sold_last_month);
-        return view('stats.index', ['orders' => $orders, 'items_sold' => $items_sold, 'items_sold_this_month' => $items_sold_this_month, 'items_sold_last_month' => $items_sold_last_month]);
+        return view('stats.index', ['admin' => $admin, 'orders' => $orders, 'items_sold' => $items_sold, 'items_sold_this_month' => $items_sold_this_month, 'items_sold_last_month' => $items_sold_last_month]);
     }
 
 

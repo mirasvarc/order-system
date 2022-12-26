@@ -36,3 +36,16 @@
         transition: transform 0.8s;
     }
 }
+
+.login-admin, .logout-admin {
+    font-size: 14px;
+
+    &:hover {
+        color: #fff !important;
+        text-decoration: underline !important;
+    }
+}
+
+.btn-modal {
+    background-color: rgb(52, 52, 255) !important;
+}

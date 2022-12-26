@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-
+    @if(session('admin'))
     <div class="title">
         <h1><a href="/"><i class="fa fa-arrow-left"></a></i>&nbsp;Přehledy </h1>
         &nbsp;&nbsp;<span class="text-danger">(Testovací verze, může obsahovat chyby)</span>
@@ -104,7 +104,9 @@
             </div>
         </div>
     </div>
-
+    @else
+        <h1 class="text-center">Nemáte přístup k této stránce</h1>
+    @endif
 
             
 

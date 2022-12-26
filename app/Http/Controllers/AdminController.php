@@ -57,4 +57,23 @@ class AdminController extends Controller
     public function showChangelog() {
         return view('admin.changelog');
     }
+
+    public function login() {
+        $password = $_POST['password'];
+
+        if($password == '123fabicovic') {
+            session(['admin' => true]);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function logout() {
+     
+        session(['admin' => false]);
+        return true;
+    
+    }
 }
