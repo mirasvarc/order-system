@@ -7,6 +7,16 @@
             <div class="col-md-12">
                 <h1>Changelog:</h1>
                 <div class="changelog-block">
+                    <p class="title">V 2.3.2 (29.12.2022)</p>
+                    <p class="text">
+                        - přidání historie rozvozů<br>
+                    </p>
+                    <br>
+                    <p class="title">V 2.3.1 (26.12.2022)</p>
+                    <p class="text">
+                        - přidání autentizace pro zobrazení statistik <br>
+                    </p>
+                    <br>
                     <p class="title">V 2.3.0 (12.11.2022)</p>
                     <p class="text">
                         - Přidání dalších 2 aut do exportu s rozdělením<br>

@@ -44,6 +44,8 @@ Route::prefix('clients')->middleware(['auth'])->group(function () {
 Route::prefix('orders')->middleware(['auth'])->group(function () {
     Route::get('/', [OrderController::class, 'index']);
     Route::get('/exports', [OrderController::class, 'ShowExports']);
+    Route::get('/exports/history', [OrderController::class, 'showDeliveryHistory']);
+    Route::get('exports/history/get', [OrderController::class, 'getDeliveryHistory'])->name('delivery_history.list');
     Route::get('/add', [OrderController::class, 'create']);
     Route::post('/add', [OrderController::class, 'store']);
     Route::get('/edit/{id}', [OrderController::class, 'edit']);

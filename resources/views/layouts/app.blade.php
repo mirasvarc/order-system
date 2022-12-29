@@ -63,7 +63,7 @@
                     </div>
                     @yield('main')
                     <div class="footer">
-                        <p><a href="/changelog">Verze 2.3.0</a> | © 2022 | Made by Miroslav Švarc | <a href="mailto:mirasvarc1@gmail.com">mirasvarc1@gmail.com</a></p>
+                        <p><a href="/changelog">Verze 2.3.2</a> | © 2022 | Made by Miroslav Švarc | <a href="mailto:mirasvarc1@gmail.com">mirasvarc1@gmail.com</a></p>
                     </div>
                 </div>
         

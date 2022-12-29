@@ -25,6 +25,9 @@
                    <li>
                       <a href="/orders/exports" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Exporty</a>
                    </li>
+                   <li>
+                     <a href="/orders/exports/history" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Historie exportů</a>
+                  </li>
              </ul>
           </li>
           

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Client;
+use App\Models\DeliveryHistory;
 use App\Models\Product;
 use App\Models\OrderItem;
 use DataTables;
@@ -507,8 +508,6 @@ class OrderController extends Controller
         $orders[5] = [];
         $orders[6] = [];
 
-        
-       
         foreach($request->order as $key => $order) {
             if($order == "1") {
                 $orders[1][] = $key;
@@ -525,8 +524,6 @@ class OrderController extends Controller
             }
         }
        
-       
-    
        
         $tmp = new Order();
         $final_orders = $tmp->getDayOrdersWithSelection($orders);
@@ -564,6 +561,27 @@ class OrderController extends Controller
 
         return $pdf->stream("dodaci_list_".time().".pdf");
     }
+
+
+    public function showDeliveryHistory() {
+        return view('orders.delivery_history');
+    }
+
+
+    public function getDeliveryHistory(Request $request) {
+
+        if ($request->ajax()) {
+            $delivery_history = DeliveryHistory::leftJoin('orders', 'orders.id', '=', 'delivery_history.order_id')
+                                                ->leftJoin('client', 'client.id', '=', 'orders.client_id')
+                                                ->get();
+            return Datatables::of($delivery_history)
+                ->addIndexColumn()
+                ->make(true);
+        }
+
+
+    }
     
+   
 
 }

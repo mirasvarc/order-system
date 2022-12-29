@@ -118,12 +118,20 @@ class Order extends Model
         $final_orders = [];
         
         $clients = Client::get();
-   
+
         foreach($orders as $keyX => $order_group) {
             
             foreach($order_group as $key => $o) {
                 $order = Order::where('id', $o)->first();
                 $client = Client::where('id', $order->client_id)->first();
+
+                $delivery_history = new DeliveryHistory();
+                $delivery_history->client_id = $client->id;
+                $delivery_history->order_id = $order->id;
+                $delivery_history->car = $keyX;
+                $delivery_history->date = $order->date;
+                $delivery_history->save();
+
                 $tmp_note = null;
                 $tmp_note = $tmp_note . $order->note;
                 
@@ -159,6 +167,8 @@ class Order extends Model
         return $final_orders;
         
     }
+
+
 
 
     public function getOrdersPriceByDays() {
