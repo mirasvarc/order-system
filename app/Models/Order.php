@@ -214,7 +214,7 @@ class Order extends Model
                 'SELECT SUM(full_price) as total 
                 FROM orders 
                 WHERE currency = "CZK" 
-                AND created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'"'
+                AND date BETWEEN "'.$date_from.'" AND "'.$date_to.'"'
             )
         );
 
@@ -223,7 +223,7 @@ class Order extends Model
                 'SELECT SUM(full_price) as total 
                 FROM orders 
                 WHERE currency = "EUR" 
-                AND created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'"'
+                AND date BETWEEN "'.$date_from.'" AND "'.$date_to.'"'
             )
         );
 

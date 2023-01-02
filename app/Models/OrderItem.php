@@ -87,7 +87,9 @@ class OrderItem extends Model
                 FROM order_items oi 
                 LEFT JOIN products p 
                 ON (oi.item_id = p.id) 
-                WHERE oi.created_at BETWEEN "'.$date_from.'" AND "'.$date_to.'" 
+                LEFT JOIN orders o
+                ON (oi.order_id = o.id)
+                WHERE o.date BETWEEN "'.$date_from.'" AND "'.$date_to.'" 
                 GROUP BY oi.item_id'
             )
         );
