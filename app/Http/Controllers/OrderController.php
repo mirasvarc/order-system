@@ -90,7 +90,7 @@ class OrderController extends Controller
     public function create()
     {
         $clients = Client::All();
-        $products = Product::All();
+        $products = Product::where('deleted', 0)->get();
         return view('orders.create')->with(['clients' => $clients, 'products' => $products]);
     }
 
@@ -556,7 +556,10 @@ class OrderController extends Controller
             'final_orders_6' => $final_orders[6]
         ];
 
-        
+        $data = [
+            'final_orders' => $final_orders,
+        ];
+
         $pdf = PDF::loadView('pdfs.DaySumSelectPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");

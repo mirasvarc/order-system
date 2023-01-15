@@ -76,13 +76,13 @@
                                         {{$product->name}}
                                     </div>
                                     <div class="product-price">
-                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" step="0.1" >&nbsp; Kč / Eur
+                                        <input class="price-input" type="number" name="product_price[{{$product->id}}]" step="0.1" >&nbsp; Kč (Eur) / Kg
                                     </div>
                                     <div class="product-count">
                                         @if($product->name == "Borůvky")
-                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" step="0.1" min="0">&nbsp; Kg
+                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" step="0.1" min="0">&nbsp; Kg (Ks)
                                         @else
-                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" min="0">&nbsp; Kg
+                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" min="0">&nbsp; Kg (Ks)
                                         @endif
                                     </div>
                                 </div>
