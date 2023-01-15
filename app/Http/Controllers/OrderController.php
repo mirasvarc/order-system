@@ -13,6 +13,7 @@ use PDF;
 use Carbon\Carbon;
 use DOMDocument;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use function Symfony\Component\String\b;
 
@@ -117,11 +118,17 @@ class OrderController extends Controller
             $order->day = $client->day;
         }
        
+        $year = Carbon::now()->year;
+        DB::table('order_numbers')->where('year', $year)->increment('count');
+
+        $order->number = DB::table('order_numbers')->where('year', $year)->first()->count;
+
         $order->date = $request->date;
         $order->save();
 
         $price = 0;
 
+       
 
         foreach($request->product as $key => $product) {
             if($product > 0 && $product != null) {
@@ -405,8 +412,7 @@ class OrderController extends Controller
 
         $order = new Order();
         $final_orders = $order->getDayOrders($day);
-
-    
+        
 
         $data = [
             'final_orders' => $final_orders,
@@ -428,7 +434,7 @@ class OrderController extends Controller
         $data = [
             'final_orders' => $final_orders,
         ];
-      
+   
         $pdf = PDF::loadView('pdfs.DayBillPDF', $data);
 
         return $pdf->stream("dodaci_list_".time().".pdf");

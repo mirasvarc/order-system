@@ -30,7 +30,13 @@
                 <table>
                     <tr>
                         <td style="position: relative;width:100%;">
-                            <h1 style="position: absolute;right:-480px;top:0px;">{{$order['id']}}</h1>
+                            <h1 style="position: absolute;right:-480px;top:0px;">
+                                @if($order['number'] != null)
+                                    {{$order['number']}}
+                                @else
+                                    {{$order['id']}}
+                                @endif
+                            </h1>
                             <h1>DODACÍ LIST</h1>
                             <p>Datum vystavení: {{date('d.m.Y' ,strtotime($order['date']))}}</p>
 
