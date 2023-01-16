@@ -80,9 +80,9 @@
                                     </div>
                                     <div class="product-count">
                                         @if($product->name == "Borůvky")
-                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" step="0.1" min="0">&nbsp; Kg (Ks)
+                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" step="0.1" min="0">&nbsp; Kg
                                         @else
-                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" min="0">&nbsp; Kg (Ks)
+                                            <input type="number" name="product[{{$product->id}}]" id="product-count-input" min="0">&nbsp; Kg
                                         @endif
                                     </div>
                                 </div>

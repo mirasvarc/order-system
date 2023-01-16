@@ -222,49 +222,63 @@
                 <tr>
                     <td>Cibule 25kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['cibule_25']}} Ks</td>
+                    <td>
+                        {{ $items['cibule_25'] / 25 }} x 25Kg
+                    </td>
                 </tr>
                 @endif
                 @if($items['cibule_10'] > 0)
                 <tr>
                     <td>Cibule 10kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['cibule_10']}} Ks</td>
+                    <td>
+                        {{ $items['cibule_10'] / 10 }} x 10Kg
+                    </td>
                 </tr>
                 @endif
                 @if($items['loupane_krajene_10'] > 0)
                 <tr>
                     <td>Loupané krajné 10kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['loupane_krajene_10']}} Ks</td>
+                    <td>
+                        {{ $items['loupane_krajene_10'] / 10 }} x 10Kg
+                    </td>
                 </tr>
                 @endif
                 @if($items['loupane_krajene_5'] > 0)
                 <tr>
                     <td>Loupané krajné 5kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['loupane_krajene_5']}} Ks</td>
+                    <td>
+                        {{ $items['loupane_krajene_5'] / 5 }} x 5Kg
+                    </td>
                 </tr>
                 @endif
                 @if($items['loupane_cele_10'] > 0)
                 <tr>
                     <td>Loupané celé 10kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['loupane_cele_10']}} Ks</td>
+                    <td>
+                        {{ $items['loupane_cele_10'] / 10 }} x 10Kg
+                    </td>
                 </tr>
                 @endif
                 @if($items['kostky_syrove_10'] > 0)
                 <tr>
                     <td>Kostky syrové 10kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['kostky_syrove_10']}} Ks</td>
+                    <td>
+                        {{ $items['kostky_syrove_10'] / 10 }} x 10Kg
+                    </td>
                 </tr>
                 @endif
                 @if($items['kostky_syrove_5'] > 0)
                 <tr>
                     <td>Kostky syrové 5kg:</td>
                     <td>&nbsp;</td>
-                    <td>{{$items['kostky_syrove_5']}} Ks</td>
+                    <td>
+                        {{ $items['kostky_syrove_5'] / 5 }} x 5Kg    
+                    </td>
                 </tr>
                 @endif
                 @if($items['platky_syrove'] > 0)
