@@ -223,7 +223,7 @@
                     <td>Cibule 25kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['cibule_25'] / 25 }} x 25Kg
+                        {{ $items['cibule_25'] }} Kg
                     </td>
                 </tr>
                 @endif
@@ -232,7 +232,7 @@
                     <td>Cibule 10kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['cibule_10'] / 10 }} x 10Kg
+                        {{ $items['cibule_10'] }} Kg
                     </td>
                 </tr>
                 @endif
@@ -241,7 +241,7 @@
                     <td>Loupané krajné 10kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['loupane_krajene_10'] / 10 }} x 10Kg
+                        {{ $items['loupane_krajene_10'] }} Kg
                     </td>
                 </tr>
                 @endif
@@ -250,7 +250,7 @@
                     <td>Loupané krajné 5kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['loupane_krajene_5'] / 5 }} x 5Kg
+                        {{ $items['loupane_krajene_5'] }} Kg
                     </td>
                 </tr>
                 @endif
@@ -259,7 +259,7 @@
                     <td>Loupané celé 10kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['loupane_cele_10'] / 10 }} x 10Kg
+                        {{ $items['loupane_cele_10'] }} Kg
                     </td>
                 </tr>
                 @endif
@@ -268,7 +268,7 @@
                     <td>Kostky syrové 10kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['kostky_syrove_10'] / 10 }} x 10Kg
+                        {{ $items['kostky_syrove_10'] }} Kg
                     </td>
                 </tr>
                 @endif
@@ -277,7 +277,7 @@
                     <td>Kostky syrové 5kg:</td>
                     <td>&nbsp;</td>
                     <td>
-                        {{ $items['kostky_syrove_5'] / 5 }} x 5Kg    
+                        {{ $items['kostky_syrove_5'] }} Kg    
                     </td>
                 </tr>
                 @endif
