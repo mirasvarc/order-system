@@ -205,7 +205,7 @@
         @endif
         @if($items['cesnek'] > 0)
         <tr>
-            <td>Česnek</td>
+            <td>Česnek:</td>
             <td>&nbsp;</td>
             <td>{{$items['cesnek']}} Kg</td>
         </tr>
