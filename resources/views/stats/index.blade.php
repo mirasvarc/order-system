@@ -16,18 +16,20 @@
                     <br>
                     <div>
                         @foreach($items_sold as $i)
-                            @php
-                                $quantity = 0;
-                                foreach($i as $item) {
-                                    $quantity += $item->quantity;
-                                    $unit = $item->unit;
-                                    $name = $item->name;
-                                }
-                            @endphp
-                            <p class="d-flex justify-content-between">
-                                <span>{{$name}}:</span> 
-                                <span>{{$quantity}} {{$unit}}</span>
-                            </p>
+                            @if(!empty($i))
+                                @php
+                                    $quantity = 0;
+                                    foreach($i as $item) {
+                                        $quantity += $item->quantity;
+                                        $unit = $item->unit;
+                                        $name = $item->name;
+                                    }
+                                @endphp
+                                <p class="d-flex justify-content-between">
+                                    <span>{{$name}}:</span> 
+                                    <span>{{$quantity}} {{$unit}}</span>
+                                </p>
+                            @endif
                         @endforeach
                     </div>
                 </div>
