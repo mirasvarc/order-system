@@ -191,8 +191,8 @@
     <script type="text/javascript">
         $(function () {
             var table = $('.yajra-datatable').DataTable({
-                processing: true,
-                serverSide: true,
+                //processing: true,
+                //serverSide: true,
                 responsive: true,
                 ajax: "{{ route('orders.list') }}",
                 columns: [

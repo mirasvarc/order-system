@@ -21,6 +21,9 @@ class Order extends Model
         'created_at' => 'datetime:d.m.Y H:i',
     ];
 
+    public function client() {
+        return $this->belongsTo(Client::class);
+    }
 
     public function getOrders() {
         return Order::get();

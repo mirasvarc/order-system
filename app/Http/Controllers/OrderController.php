@@ -44,13 +44,15 @@ class OrderController extends Controller
     public function getOrders(Request $request)
     {
         if ($request->ajax()) {
-            $data = Order::latest()->get();
+            //$data = Order::latest()->get();
             $data = Order::addSelect(['name' => Client::select('name')
-                            ->whereColumn('id', 'orders.client_id')
-                        ])->addSelect(['client_day' => Client::select('day')
-                            ->whereColumn('id', 'orders.client_id')
-                        ])->orderBy('id', 'DESC')->get();
-        
+                             ->whereColumn('id', 'orders.client_id')
+                         ])->addSelect(['client_day' => Client::select('day')
+                             ->whereColumn('id', 'orders.client_id')
+                         ])->orderBy('id', 'DESC')->get();
+    
+           
+
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($order){
