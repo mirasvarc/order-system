@@ -7,6 +7,11 @@
             <div class="col-md-12">
                 <h1>Changelog:</h1>
                 <div class="changelog-block">
+                    <p class="title">V 2.3.3 (29.07.2023)</p>
+                    <p class="text">
+                        - zrychlení načítání objednávek v tabulce<br>
+                    </p>
+                    <br>
                     <p class="title">V 2.3.2 (29.12.2022)</p>
                     <p class="text">
                         - přidání historie rozvozů<br>
